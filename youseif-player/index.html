@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="ar" dir="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#030304" id="themeColor">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Youseif Player">
+<meta name="application-name" content="Youseif Player Pro">
+<meta name="description" content="Youseif Player Pro — Premium media player with wide format & stream support">
+<title>Youseif Player Pro v4.4.1</title>
+<link rel="icon" type="image/png" sizes="512x512" href="assets/app-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/app-icon.png">
+<link rel="shortcut icon" href="assets/app-icon.png">
+<link rel="apple-touch-icon" href="assets/app-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/app-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css?v=455">
+
+<style id="player-layout-fix">
+.player .video-wrap{
+  position:relative !important;
+  height:min(48vw,200px) !important;
+  min-height:168px !important;
+  background:#000 !important;
+  overflow:hidden !important;
+}
+.player .video-wrap > video{
+  width:100% !important; height:100% !important;
+  object-fit:contain !important; display:block !important;
+}
+.player .visual{
+  position:absolute !important; left:0 !important; right:0 !important; top:0 !important; bottom:0 !important;
+  width:100% !important; height:100% !important;
+  display:block !important;
+  pointer-events:none !important;
+  background:transparent !important;
+  padding:0 !important; margin:0 !important; gap:0 !important;
+  z-index:3 !important;
+}
+.player .visual *{ pointer-events:auto; }
+.player #centerPlay,
+.player .center-play-only{
+  position:absolute !important;
+  left:50% !important; top:50% !important;
+  right:auto !important; bottom:auto !important;
+  margin:0 !important;
+  transform:translate(-50%,-50%) !important;
+  width:34px !important; height:34px !important;
+  border-radius:50% !important;
+  display:grid !important; place-items:center !important;
+  z-index:5 !important;
+  background:rgba(0,0,0,.55) !important;
+  border:none !important;
+  box-shadow:none !important;
+}
+.player #centerPlay .svg-ico,
+.player .center-play-only .svg-ico{
+  width:18px !important; height:18px !important;
+  color:var(--accent,#e11d48) !important;
+}
+.player #audioOnlyBtn,
+.player .side-left{
+  position:absolute !important;
+  left:8px !important; bottom:8px !important; top:auto !important;
+  transform:none !important;
+  width:26px !important; height:26px !important;
+  z-index:6 !important;
+  margin:0 !important;
+}
+.player .side-stack.side-right{
+  position:absolute !important;
+  right:8px !important; bottom:8px !important; top:auto !important;
+  transform:none !important;
+  display:flex !important; flex-direction:row !important; gap:4px !important;
+  z-index:6 !important; margin:0 !important;
+}
+.player .side-fab{
+  width:26px !important; height:26px !important;
+  border-radius:8px !important;
+  display:grid !important; place-items:center !important;
+  background:rgba(0,0,0,.7) !important;
+  border:1px solid rgba(255,255,255,.12) !important;
+  color:var(--accent,#e11d48) !important;
+}
+.player .player-actions{ display:flex !important; gap:6px !important; }
+.player .player-actions button{
+  width:32px !important; height:32px !important;
+  display:grid !important; place-items:center !important;
+  border-radius:10px !important;
+  background:rgba(0,0,0,.4) !important;
+  color:var(--accent,#e11d48) !important;
+}
+.player .player-actions #ccTopBtn{
+  width:auto !important; padding:0 8px !important; font-weight:700 !important;
+}
+.player .controls .bottom-bar{
+  display:flex !important; justify-content:space-between !important;
+  align-items:center !important; padding:8px 12px 12px !important;
+}
+.player .transport, .player .floating-tools, .player .volume-wrap{ display:none !important; }
+/* dock */
+
+.player .dock-bar{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;padding:8px 10px!important;border-radius:18px!important;background:linear-gradient(145deg,rgba(18,20,28,.92),rgba(6,7,12,.88))!important;border:1px solid rgba(255,255,255,.08)!important}
+.player .dock-btn{flex:1!important;height:44px!important;display:grid!important;place-items:center!important;border-radius:14px!important;background:rgba(255,255,255,.03)!important;border:1px solid rgba(255,255,255,.06)!important;color:var(--accent)!important}
+.player .dock-btn .svg-ico,.player .dock-btn svg{width:22px!important;height:22px!important;color:var(--accent)!important;fill:currentColor!important}
+.player .dock-btn.dock-label span{font-size:11px!important;font-weight:800!important;color:var(--accent)!important}
+.player .head-btn{width:34px!important;height:34px!important;display:grid!important;place-items:center!important;border-radius:11px!important;background:rgba(0,0,0,.35)!important;border:1px solid rgba(255,255,255,.08)!important;color:var(--accent)!important}
+
+</style>
+
+<style id="aurora-flow-theme">
+html[data-theme="aurora"]{--accent:#df4dff!important;--accent2:#42e7ff!important;--glow:rgba(161,65,255,.28)!important;--bg:#05031a!important;--panel:#110b25!important}
+html[data-theme="aurora"] body{background:#020414!important}
+html[data-theme="aurora"] .app{background:radial-gradient(480px 280px at 8% 18%,rgba(226,55,255,.26),transparent 68%),radial-gradient(500px 340px at 96% 42%,rgba(0,225,255,.20),transparent 68%),linear-gradient(150deg,#05051d 0%,#080522 42%,#020817 100%)!important;overflow:visible;min-height:0!important;padding-bottom:78px!important}
+html[data-theme="aurora"] .app:before{content:"";position:absolute;z-index:0;pointer-events:none;inset:70px -35% 100px;background:linear-gradient(115deg,transparent 18%,rgba(226,55,255,.16) 38%,rgba(51,226,255,.14) 59%,transparent 79%);filter:blur(30px);transform:rotate(-8deg)}
+html[data-theme="aurora"] .topbar,html[data-theme="aurora"] #content,html[data-theme="aurora"] html[data-theme="aurora"] .bottom-nav{position:relative;z-index:1}
+html[data-theme="aurora"] .topbar{background:linear-gradient(180deg,rgba(4,4,22,.72),rgba(4,4,22,.12))!important}
+html[data-theme="aurora"] .brand span{color:#f197ff!important;text-shadow:0 0 8px rgba(223,77,255,.85),0 0 25px rgba(66,231,255,.42)!important}
+html[data-theme="aurora"] .url-box,html[data-theme="aurora"] .play-btn,html[data-theme="aurora"] .player,html[data-theme="aurora"] .info-card,html[data-theme="aurora"] html[data-theme="aurora"] .bottom-nav{border-color:rgba(164,119,255,.36)!important;background:linear-gradient(145deg,rgba(33,21,67,.66),rgba(5,8,29,.74))!important;backdrop-filter:blur(18px)!important}
+html[data-theme="aurora"] .play-btn{color:#fff!important;border-color:rgba(66,231,255,.78)!important;background:linear-gradient(110deg,rgba(223,77,255,.32),rgba(66,231,255,.20))!important;box-shadow:0 0 20px rgba(223,77,255,.25),inset 0 0 18px rgba(66,231,255,.12)!important}
+html[data-theme="aurora"] .player{box-shadow:0 18px 42px rgba(0,0,0,.55),0 0 30px rgba(98,65,255,.26)!important}
+html[data-theme="aurora"] .player .player-head{background:linear-gradient(100deg,rgba(45,16,83,.90),rgba(3,16,47,.88))!important}
+html[data-theme="aurora"] .player .video-wrap{height:205px!important;background:radial-gradient(circle at 50% 50%,rgba(47,20,89,.75),#030316 65%,#01020a)!important}
+html[data-theme="aurora"] .player .visual{background:radial-gradient(circle at 50% 45%,rgba(46,12,90,.88),rgba(4,7,28,.96) 50%,#01020a 100%)!important}
+html[data-theme="aurora"] .player .visual:before{width:125%;height:115%;left:-13%;top:-10%;border-color:rgba(223,77,255,.42)!important;box-shadow:0 0 28px rgba(223,77,255,.25)!important;transform:rotate(-18deg)!important}
+html[data-theme="aurora"] .player .visual:after{width:105%;height:90%;left:-2%;top:9%;border-color:rgba(66,231,255,.30)!important;box-shadow:0 0 30px rgba(66,231,255,.22)!important;transform:rotate(22deg)!important}
+html[data-theme="aurora"] .player .center-play-only,
+html[data-theme="aurora"] .player #centerPlay{
+  background:rgba(0,0,0,.55)!important;
+  border:none!important;
+  box-shadow:none!important;
+}
+html[data-theme="aurora"] .player .side-fab,html[data-theme="aurora"] .player .head-btn{background:linear-gradient(145deg,rgba(82,36,132,.60),rgba(4,15,45,.72))!important;border-color:rgba(118,206,255,.35)!important;color:#83efff!important;backdrop-filter:blur(10px)!important}
+html[data-theme="aurora"] .player .dock-bar{background:linear-gradient(145deg,rgba(45,19,79,.88),rgba(4,11,31,.92))!important;border-color:rgba(135,110,255,.34)!important}
+html[data-theme="aurora"] .player .dock-btn{background:linear-gradient(145deg,rgba(223,77,255,.13),rgba(66,231,255,.07))!important;border-color:rgba(120,213,255,.22)!important}
+html[data-theme="aurora"] .player .dock-btn:hover{background:linear-gradient(145deg,rgba(223,77,255,.28),rgba(66,231,255,.19))!important;border-color:#8bf3ff!important}
+html[data-theme="aurora"] .info-card{background:linear-gradient(145deg,rgba(32,17,63,.78),rgba(4,13,33,.83))!important}
+html[data-theme="aurora"] .info-head,html[data-theme="aurora"] .live-quality,html[data-theme="aurora"] .timeline .red{color:#e792ff!important}.info-row span:last-child{color:#80eaff!important}
+html[data-theme="aurora"] .bottom-nav{box-shadow:0 14px 34px rgba(0,0,0,.7),0 0 28px rgba(94,65,255,.32),inset 0 0 20px rgba(83,198,255,.09)!important}
+html[data-theme="aurora"] .nav.active small{color:rgba(255,255,255,.42)!important;background:transparent!important}
+html[data-theme="aurora"] .nav.active:after{display:none!important}
+</style>
+
+<style id="player-controls-final">
+/* Final compact player layout: one clear control zone per function */
+.player .video-wrap{height:190px!important;min-height:0!important}
+.player .visual:before,.player .visual:after{display:none!important}
+
+/* Center Play — smaller, no circle ring */
+.player .center-play-only,
+.player #centerPlay{
+  width:34px!important;
+  height:34px!important;
+  min-width:34px!important;
+  min-height:34px!important;
+  border-radius:50%!important;
+  background:rgba(0,0,0,.55)!important;
+  border:none!important;
+  box-shadow:none!important;
+  outline:none!important;
+}
+.player .center-play-only .svg-ico,
+.player #centerPlay .svg-ico{
+  width:18px!important;
+  height:18px!important;
+}
+/* Kill aurora circle glow on center play */
+html[data-theme="aurora"] .player .center-play-only,
+html[data-theme="aurora"] .player #centerPlay{
+  background:rgba(0,0,0,.55)!important;
+  border:none!important;
+  box-shadow:none!important;
+}
+
+/* Side icons (music / lock / rotate) — smaller */
+.player #audioOnlyBtn,
+.player .side-left{
+  left:8px!important;
+  top:auto!important;
+  bottom:8px!important;
+  transform:none!important;
+  width:26px!important;
+  height:26px!important;
+  border-radius:8px!important;
+}
+.player .side-stack.side-right{
+  right:8px!important;
+  top:auto!important;
+  bottom:8px!important;
+  transform:none!important;
+  display:flex!important;
+  flex-direction:row!important;
+  gap:4px!important;
+}
+.player .side-stack.side-right .side-fab,
+.player .side-fab{
+  width:26px!important;
+  height:26px!important;
+  border-radius:8px!important;
+}
+.player .side-fab .svg-ico,
+.player #audioOnlyBtn .svg-ico{
+  width:14px!important;
+  height:14px!important;
+}
+
+/* Better Paste button */
+.url-box .copy,
+button.copy.glass-chip,
+#copyUrl{
+  width:32px!important;
+  height:32px!important;
+  min-width:32px!important;
+  border-radius:10px!important;
+  background:linear-gradient(145deg,rgba(225,29,72,.18),rgba(0,0,0,.35))!important;
+  border:1px solid rgba(225,29,72,.45)!important;
+  color:var(--accent,#e11d48)!important;
+  display:grid!important;
+  place-items:center!important;
+  box-shadow:0 0 12px rgba(225,29,72,.2)!important;
+  transition:all .18s ease!important;
+}
+.url-box .copy:hover,
+button.copy.glass-chip:hover,
+#copyUrl:hover{
+  background:linear-gradient(145deg,rgba(225,29,72,.32),rgba(0,0,0,.4))!important;
+  border-color:var(--accent,#e11d48)!important;
+  box-shadow:0 0 16px rgba(225,29,72,.4)!important;
+}
+.url-box .copy .svg-ico,
+#copyUrl .svg-ico{
+  width:16px!important;
+  height:16px!important;
+  color:var(--accent,#e11d48)!important;
+}
+html[data-theme="aurora"] .url-box .copy,
+html[data-theme="aurora"] #copyUrl{
+  background:linear-gradient(145deg,rgba(223,77,255,.22),rgba(4,15,45,.65))!important;
+  border-color:rgba(118,206,255,.4)!important;
+  color:#83efff!important;
+  box-shadow:0 0 14px rgba(66,231,255,.25)!important;
+}
+html[data-theme="aurora"] .url-box .copy .svg-ico,
+html[data-theme="aurora"] #copyUrl .svg-ico{
+  color:#83efff!important;
+}
+
+.player .dock-bar{gap:5px!important;padding:6px!important;border-radius:14px!important}
+.player .dock-btn{height:38px!important;border-radius:10px!important}
+.player .dock-btn .svg-ico,.player .dock-btn svg{width:18px!important;height:18px!important}
+.player .dock-btn.dock-label span{font-size:9px!important}
+.player .player-actions{gap:4px!important}
+.player .player-actions button{width:29px!important;height:29px!important;border-radius:8px!important}
+.player .player-actions #ccTopBtn{padding:0 6px!important}
+.player .timeline{height:30px!important;padding:0 9px!important}
+html body .player.is-fullscreen .controls,html body .player.fs-css-only .controls{height:48px!important;bottom:0!important;padding:5px 10px 8px!important;background:rgba(4,5,18,.74)!important;border-top:1px solid rgba(255,255,255,.12)!important;backdrop-filter:blur(14px)!important}
+html body .player.is-fullscreen .timeline,html body .player.fs-css-only .timeline{height:28px!important;bottom:48px!important;background:rgba(4,5,18,.62)!important;backdrop-filter:blur(10px)!important}
+html body .player.is-fullscreen .dock-bar,html body .player.fs-css-only .dock-bar{height:38px!important;padding:3px 6px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+/* Only leave space for controls when chrome is visible; when hidden fill 100% */
+@media (orientation:landscape){
+  html body .player.is-fullscreen.fs-chrome-show .video-wrap,
+  html body .player.fs-css-only.fs-chrome-show .video-wrap{bottom:76px!important}
+  html body .player.is-fullscreen.fs-chrome-show .side-left,
+  html body .player.fs-css-only.fs-chrome-show .side-left{bottom:88px!important}
+  html body .player.is-fullscreen.fs-chrome-show .side-stack.side-right,
+  html body .player.fs-css-only.fs-chrome-show .side-stack.side-right{bottom:88px!important}
+  html body .player.is-fullscreen.fs-chrome-hidden .video-wrap,
+  html body .player.fs-css-only.fs-chrome-hidden .video-wrap{
+    top:0!important; left:0!important; right:0!important; bottom:0!important;
+    height:100%!important; min-height:100%!important;
+  }
+}
+
+/* ===== Bottom nav: soft glow on EVERY button (icon + name) ===== */
+.bottom-nav .nav{
+  background:transparent!important;
+  border-radius:14px!important;
+  position:relative!important;
+}
+.bottom-nav .nav:before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  /* covers icon + label name */
+  inset:3px 4px 3px!important;
+  border-radius:14px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012))!important;
+  border:1px solid rgba(255,255,255,.07)!important;
+  opacity:.55!important;
+  transition:opacity .2s, box-shadow .2s, border-color .2s!important;
+  pointer-events:none!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.04)!important;
+  z-index:0!important;
+}
+.bottom-nav .nav.active:before{
+  opacity:1!important;
+  border-color:color-mix(in srgb,var(--accent) 40%,transparent)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.1),0 0 16px var(--glow)!important;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 14%,transparent),rgba(255,255,255,.02))!important;
+}
+.bottom-nav .nav:after{
+  display:none!important;
+  content:none!important;
+}
+.bottom-nav .nav.active{
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.bottom-nav .nav > *{
+  position:relative!important;
+  z-index:1!important;
+}
+/* Label always normal gray */
+.bottom-nav .nav small,
+.bottom-nav .nav.active small,
+html[data-theme="aurora"] .nav.active small{
+  color:rgba(255,255,255,.45)!important;
+  font-weight:500!important;
+  font-size:7.5px!important;
+  letter-spacing:.3px!important;
+  margin-top:2px!important;
+  background:transparent!important;
+}
+.bottom-nav .nav img,
+.bottom-nav .nav-3d{
+  width:24px!important;
+  height:24px!important;
+}
+
+/* ===== Top PLAY + Paste — compact & consistent ===== */
+.url-row{
+  grid-template-columns:1fr 64px!important;
+  gap:6px!important;
+  align-items:center!important;
+}
+.url-box,
+.play-btn,
+.play-btn.glass-play{
+  height:40px!important;
+  border-radius:12px!important;
+}
+.play-btn,
+.play-btn.glass-play{
+  font-size:11px!important;
+  padding:0 8px!important;
+  min-width:64px!important;
+  gap:4px!important;
+}
+.play-btn .svg-ico,
+.play-btn .play-ico .svg-ico,
+.glass-play .play-ico .svg-ico{
+  width:13px!important;
+  height:13px!important;
+}
+.url-box .copy,
+button.copy.glass-chip,
+#copyUrl{
+  width:28px!important;
+  height:28px!important;
+  min-width:28px!important;
+  border-radius:9px!important;
+  background:rgba(0,0,0,.35)!important;
+  border:1px solid color-mix(in srgb,var(--accent) 55%,transparent)!important;
+  color:var(--accent)!important;
+  box-shadow:0 0 10px color-mix(in srgb,var(--accent) 22%,transparent)!important;
+}
+.url-box .copy .svg-ico,
+#copyUrl .svg-ico,
+.copy .svg-ico{
+  width:15px!important;
+  height:15px!important;
+  color:var(--accent)!important;
+  fill:currentColor!important;
+}
+html[data-theme="aurora"] .url-box .copy,
+html[data-theme="aurora"] #copyUrl{
+  border-color:color-mix(in srgb,var(--accent) 55%,transparent)!important;
+  color:var(--accent)!important;
+  box-shadow:0 0 10px color-mix(in srgb,var(--accent) 25%,transparent)!important;
+}
+
+/* ===== Remove extra colored line under progress bar ===== */
+.player .timeline,
+.timeline{
+  border:0!important;
+  border-bottom:0!important;
+  border-top:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+.player .timeline::before,
+.player .timeline::after,
+.timeline::before,
+.timeline::after{
+  display:none!important;
+  content:none!important;
+}
+.player .timeline input[type=range],
+.timeline input[type=range]{
+  border:0!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+.player .controls,
+.player .dock-bar{
+  border-top:0!important;
+}
+
+/* ===== Films: single horizontal scrollable row ===== */
+.films-row,
+.group-row.films-row{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  gap:8px!important;
+  padding-bottom:6px!important;
+  scrollbar-width:none!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+.films-row::-webkit-scrollbar,
+.group-row.films-row::-webkit-scrollbar{
+  display:none!important;
+}
+.films-row .category,
+.group-row.films-row .category{
+  flex:0 0 auto!important;
+  min-width:86px!important;
+  height:68px!important;
+  border-radius:14px!important;
+}
+.films-row .category img,
+.films-row .category .icon3d,
+.group-row.films-row .category img,
+.group-row.films-row .category .icon3d{
+  width:26px!important;
+  height:26px!important;
+}
+.films-row .category b,
+.group-row.films-row .category b{
+  font-size:8px!important;
+}
+.category-grid{display:none!important}
+
+/* General category size */
+.category img,
+.category .icon3d{
+  width:26px!important;
+  height:26px!important;
+}
+.group-row .category{
+  height:68px!important;
+  min-width:86px!important;
+}
+
+/* ===== True immersive fullscreen — fill entire screen ===== */
+html body .player.is-fullscreen,
+html body .player.fs-css-only{
+  position:fixed!important;
+  inset:0!important;
+  top:0!important; left:0!important; right:0!important; bottom:0!important;
+  width:100vw!important;
+  height:100dvh!important;
+  max-width:none!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  z-index:2147483646!important;
+  background:#000!important;
+  overflow:hidden!important;
+}
+html body .player.is-fullscreen .video-wrap,
+html body .player.fs-css-only .video-wrap,
+html body .player.is-fullscreen.fs-chrome-hidden .video-wrap,
+html body .player.fs-css-only.fs-chrome-hidden .video-wrap{
+  position:absolute!important;
+  inset:0!important;
+  top:0!important; left:0!important; right:0!important; bottom:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:100%!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+}
+html body .player.is-fullscreen video,
+html body .player.fs-css-only video{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  background:#000!important;
+}
+html body.player-fs .bottom-nav,
+html body.player-fs .topbar{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+html body.player-fs{
+  overflow:hidden!important;
+  background:#000!important;
+  position:fixed!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+}
+html body.player-fs .app{
+  overflow:hidden!important;
+  max-height:100dvh!important;
+  height:100dvh!important;
+}
+/* When chrome visible, push video up so controls fit */
+html body .player.is-fullscreen.fs-chrome-show .video-wrap,
+html body .player.fs-css-only.fs-chrome-show .video-wrap{
+  bottom:72px!important;
+  height:auto!important;
+}
+</style>
+
+</head>
+<body>
+<div class="app" id="app">
+  <header class="topbar glass-header">
+    <button class="top-icon glass-icon" id="menuBtn" aria-label="Menu"><span class="menu-glyph"><i></i><i></i><i></i></span></button>
+    <div class="brand" aria-label="Youseif player pro"><span class="brand-name">youseif</span><b class="brand-sub">player pro</b></div>
+    <div class="top-actions">
+      <button class="top-icon glass-icon" id="refreshBtn" type="button" aria-label="Refresh"><img class="icon-tint" src="assets/icons3d/refresh.png" alt=""></button>
+      <button class="top-icon glass-icon" id="downloadTop" type="button" aria-label="Downloads"><img class="icon-tint" src="assets/icons3d/downloads.png" alt=""></button>
+    </div>
+  </header>
+
+  <main id="content"></main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <a href="#home" data-page="home" class="nav active"><img class="nav-3d icon-tint" src="assets/icons3d/home.png" alt=""><small>HOME</small></a>
+    <a href="#channels" data-page="channels" class="nav"><img class="nav-3d icon-tint" src="assets/icons3d/channels.png" alt=""><small>CHANNELS</small></a>
+    <a href="#films" data-page="films" class="nav"><img class="nav-3d icon-tint" src="assets/icons3d/films.png" alt=""><small>FILMS</small></a>
+    <a href="#downloads" data-page="downloads" class="nav"><img class="nav-3d icon-tint" src="assets/icons3d/downloads.png" alt=""><small>DOWNLOADS</small></a>
+    <a href="#settings" data-page="settings" class="nav"><img class="nav-3d icon-tint" src="assets/icons3d/settings.png" alt=""><small>SETTINGS</small></a>
+  </nav>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.2/dist/hls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dashjs@4.7.4/dist/dash.all.min.js"></script>
+<script src="app.js?v=455"></script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{});}</script>
+</body>
+</html>
