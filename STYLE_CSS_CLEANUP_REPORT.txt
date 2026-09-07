@@ -1,0 +1,16 @@
+style.css cleanup report
+============================
+original_css_bytes: 141668
+cleaned_css_bytes: 142001
+invalid_known_declaration_fixed: 1
+important_count: 1510
+center_play_occurrences: 91
+round_control_occurrences: 77
+ctrl_btn_occurrences: 48
+backup_created: youseif-player/style.css.backup-original
+
+Notes:
+- Cascade/order was preserved deliberately.
+- The known invalid `!}` declaration was corrected.
+- Whitespace was normalized.
+- Original style.css was retained as style.css.backup-original.
