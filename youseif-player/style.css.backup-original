@@ -1,0 +1,3200 @@
+:root{--bg:#030304;--panel:#08090c;--panel2:#0d0f13;--line:#20232a;--line2:#2b2e36;--text:#f5f5f7;--muted:#7d8089;--accent:#ff2f40;--accent2:#ff5964;--green:#45df8a;--glow:rgba(255,39,56,.16)}
+*{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;background:#000;color:var(--text);font-family:Inter,Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}body{min-height:100dvh}button,input{font:inherit;color:inherit}button{border:0;background:transparent;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}button:active{transform:scale(.975)}img{display:block}.app{width:100%;max-width:430px;min-height:100dvh;margin:auto;position:relative;background:radial-gradient(900px 420px at 50% -160px,var(--glow),transparent 62%),#030304;padding-bottom:112px}.topbar{height:82px;padding:10px 15px 0;display:grid;grid-template-columns:42px 1fr 84px;align-items:center;gap:6px}.top-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:13px}.top-icon:active{background:rgba(255,255,255,.035)}.top-icon>img{width:29px;height:29px}.hamb{width:26px;display:grid;gap:5px}.hamb i{height:2px;width:26px;background:#eee;border-radius:2px;box-shadow:0 0 7px rgba(255,255,255,.12)}.brand{white-space:nowrap;text-align:center;line-height:.9;display:flex;align-items:baseline;justify-content:center;gap:5px}.brand span{font-family:"Brush Script MT","Segoe Script",cursive;font-size:36px;font-weight:500;font-style:italic;color:var(--accent2);text-shadow:0 0 5px var(--glow),0 0 17px var(--glow),0 0 28px var(--glow)}.brand b{font-size:12px;font-weight:400;color:#8f9198;letter-spacing:.1px}.top-actions{display:flex;justify-content:flex-end;gap:2px}#content{padding:4px 14px 24px}.page{animation:pageIn .22s ease-out}@keyframes pageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+/* 3D icon language */
+.icon3d,.nav img,.top-icon>img,.tiny3d{object-fit:contain;transform:perspective(520px) rotateX(4deg) rotateY(-7deg) rotateZ(-2deg);transform-style:preserve-3d;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.65)) drop-shadow(0 0 5px var(--glow));transition:transform .22s ease,filter .22s ease}.icon3d:hover,.nav:hover img,.top-icon:hover>img,.tiny3d:hover{transform:perspective(520px) rotateX(7deg) rotateY(-12deg) rotateZ(-3deg) translateY(-1px) scale(1.045);filter:drop-shadow(2px 4px 3px rgba(0,0,0,.72)) drop-shadow(0 0 7px var(--glow))}.nav.active img{transform:perspective(520px) rotateX(5deg) rotateY(-9deg) rotateZ(-2deg) translateY(-1px) scale(1.04);filter:saturate(1.18) brightness(1.02) drop-shadow(2px 3px 2px rgba(0,0,0,.65)) drop-shadow(0 0 8px var(--glow))}
+/* common */
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:16px 2px 9px}.section-head h2{font-size:12px;margin:0;letter-spacing:.55px}.link{font-size:9px;color:var(--accent2)}.sub{font-size:9px;color:#777a82;margin:0 0 12px}.title{font-size:21px;margin:3px 0 2px;font-weight:850;letter-spacing:.1px}.search{display:grid;grid-template-columns:1fr auto;gap:7px}.searchbox{height:42px;border:1px solid var(--line2);border-radius:13px;background:linear-gradient(145deg,#0a0b0e,#050608);display:flex;align-items:center;padding:0 10px;gap:7px;box-shadow:inset 0 0 14px rgba(255,255,255,.012)}.searchbox input{border:0;outline:0;background:none;width:100%;min-width:0;font-size:11px}.searchbox input::placeholder{color:#666970}.searchbox img{width:23px;height:23px;opacity:.78}.filter-btn,.chip{background:#08090b;border:1px solid #292c33;border-radius:11px}.filter-btn{height:42px;padding:0 11px;font-size:9px;color:#ddd}.chips{display:flex;gap:6px;overflow:auto;scrollbar-width:none;margin:9px 0}.chips::-webkit-scrollbar{display:none}.chip{padding:7px 10px;white-space:nowrap;font-size:9px;color:#aeb0b6}.chip.active{border-color:var(--accent2);color:var(--accent2);box-shadow:0 0 12px var(--glow),inset 0 0 10px var(--glow)}
+/* home */
+.url-row{display:grid;grid-template-columns:1fr 73px;gap:7px;margin-bottom:9px}.url-box{height:44px;border:1px solid #282b31;border-radius:12px;background:#050608;display:flex;align-items:center;padding:0 9px;gap:7px;box-shadow:inset 0 0 14px rgba(255,255,255,.01)}.url-box .chain{font-size:17px;color:#b9bbc0}.url-box input{min-width:0;width:100%;background:none;border:0;outline:0;font-size:10px}.url-box input::placeholder{color:#686b72}.copy{width:27px;height:27px;border:1px solid #33363e;border-radius:8px;background:#090a0d;font-size:11px}.play-btn{height:44px;border:1px solid #ed3441;border-radius:12px;color:#eee;font-size:12px;letter-spacing:.2px;background:linear-gradient(145deg,var(--glow),rgba(0,0,0,.1));box-shadow:0 0 14px var(--glow),inset 0 0 15px var(--glow)}.play-btn:active{box-shadow:0 0 20px var(--glow)}
+.player{border:1px solid #272a30;border-radius:15px;overflow:hidden;background:#020203;box-shadow:0 14px 35px rgba(0,0,0,.45),0 0 24px var(--glow)}.player-head{height:40px;padding:7px 9px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,#090a0d,#050608)}.stream-left{display:flex;align-items:center;gap:6px;min-width:0}.live-tag{height:21px;border:1px solid var(--accent2);border-radius:6px;padding:0 6px;display:flex;align-items:center;gap:4px;font-size:7px;color:var(--accent2);box-shadow:0 0 8px var(--glow)}.live-dot{width:5px;height:5px;background:var(--accent2);border-radius:50%;box-shadow:0 0 7px var(--accent2)}.stream-title{font-size:10px;color:#e2e2e5}.player-actions{display:flex;gap:0}.player-actions button{width:27px;height:27px;display:grid;place-items:center;border-radius:8px}.player-actions button:active{background:var(--glow)}.player-actions img{width:22px;height:22px}.video-wrap{height:160px;position:relative;background:#000}.video-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:none}.video-wrap.has-video video{display:block}.video-wrap.has-video .visual{display:none}.visual{height:100%;position:relative;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at center,#13080b 0%,#050203 46%,#000 100%)}.visual:before,.visual:after{content:"";position:absolute;width:145%;height:72%;left:-22%;border:1px solid var(--glow);border-radius:50%;transform:rotate(-9deg);box-shadow:0 0 18px var(--glow)}.visual:before{top:18%;border-left-color:transparent;border-right-color:transparent}.visual:after{top:29%;opacity:.6;border-color:var(--glow);border-left-color:transparent;border-right-color:transparent}.visual>*{position:relative;z-index:2}.transport{display:flex;align-items:center;gap:7px}.round-control{width:37px;height:37px;border:1px solid var(--glow);border-radius:50%;background:rgba(0,0,0,.55);display:grid;place-items:center;box-shadow:0 5px 12px rgba(0,0,0,.35),0 0 10px var(--glow)}.round-control img{width:24px;height:24px}.round-control small{font-size:7px;color:#eee}.center-play{width:51px;height:51px;border-color:var(--accent2);box-shadow:0 6px 15px rgba(0,0,0,.45),0 0 18px var(--glow)}.center-play img{width:32px;height:32px}.timeline{height:30px;padding:0 8px;display:grid;grid-template-columns:auto 1fr auto auto;gap:6px;align-items:center;font-size:8px;color:#aaa}.timeline input,.volume-wrap input{appearance:none;-webkit-appearance:none;height:3px;background:linear-gradient(90deg,var(--accent2) 0 48%,#25272c 48%);border-radius:5px;outline:none}.timeline input::-webkit-slider-thumb,.volume-wrap input::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:9px;height:9px;border-radius:50%;background:var(--accent2);border:1px solid var(--accent2);box-shadow:0 0 6px var(--glow)}.timeline input::-moz-range-thumb,.volume-wrap input::-moz-range-thumb{width:9px;height:9px;border-radius:50%;background:var(--accent2);border:1px solid var(--accent2)}.timeline .red{color:var(--accent2)}.controls{padding:0 8px 8px;display:flex;align-items:center;justify-content:space-between;gap:5px}.control-left,.control-right{display:flex;align-items:center;gap:4px}.tiny3d{width:25px;height:25px}.mini{height:25px;min-width:30px;padding:0 5px;border:1px solid #34373e;border-radius:7px;background:#060709;font-size:8px;color:#bfc0c5}.mini.active{border-color:#ef3946;color:var(--accent2);box-shadow:0 0 8px var(--glow)}.volume-wrap{display:flex;align-items:center;gap:3px}.volume-wrap input{width:50px}.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.info-card{min-height:118px;border:1px solid #22252a;border-radius:12px;background:linear-gradient(145deg,#090b0e,#040506);padding:9px;box-shadow:inset 0 0 18px rgba(255,255,255,.008)}.info-head{display:flex;justify-content:space-between;color:var(--accent2);font-size:8px;margin-bottom:4px}.info-row{display:flex;justify-content:space-between;border-bottom:1px solid #181a1f;padding:5px 0;font-size:7px}.info-row span:first-child{color:#85878e}.info-row span:last-child{color:#e56a72}.chart{height:51px}.chart svg{width:100%;height:100%}.chart-meta{display:flex;justify-content:space-between;font-size:7px;color:#777a81}
+/* bottom navigation */
+.bottom-nav{position:fixed;z-index:50;left:50%;bottom:9px;transform:translateX(-50%);width:min(calc(100% - 26px),402px);height:72px;border:1px solid var(--glow);border-radius:27px;background:rgba(4,5,7,.94);display:grid;grid-template-columns:repeat(5,1fr);padding:5px 5px 4px;box-shadow:0 14px 34px rgba(0,0,0,.6),0 0 24px var(--glow),inset 0 0 18px var(--glow);backdrop-filter:blur(14px)}.bottom-nav:before{content:"";position:absolute;inset:-1px;border-radius:27px;pointer-events:none;box-shadow:0 0 13px var(--glow)}.nav{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:0;border-radius:18px}.nav:active{background:var(--glow)}.nav img{width:29px;height:29px;filter:saturate(.72) brightness(.72) drop-shadow(1px 2px 2px rgba(0,0,0,.65)) drop-shadow(0 0 4px var(--glow))}.nav small{font-size:8px;color:#92949b;white-space:nowrap}.nav.active small{color:var(--accent2)}.nav.active:after{content:"";position:absolute;bottom:1px;width:30px;height:2px;border-radius:3px;background:var(--accent2);box-shadow:0 0 8px var(--glow)}
+/* pages */
+.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.category{height:94px;border:1px solid #24272e;border-radius:13px;background:linear-gradient(145deg,#0b0c10,#060709);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;box-shadow:0 7px 17px rgba(0,0,0,.24),inset 0 0 18px rgba(255,255,255,.008);transition:transform .2s,border-color .2s,box-shadow .2s}.category:hover{transform:translateY(-1px);border-color:#383b44;box-shadow:0 10px 20px rgba(0,0,0,.32),0 0 12px var(--glow)}.category img{width:43px;height:43px}.category b{font-size:8px;letter-spacing:.25px}.posters{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.poster{border:1px solid #22252a;border-radius:11px;overflow:hidden;background:#07080a;text-align:left}.poster-art{height:124px;display:grid;place-items:center;position:relative;overflow:hidden}.poster-art:before{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at 35% 35%,rgba(255,71,86,.34),transparent 28%),linear-gradient(145deg,#171017,#07080b 55%,#1a070a);transform:rotate(-8deg)}.art-two:before{background:radial-gradient(circle at 65% 30%,rgba(255,111,119,.30),transparent 26%),linear-gradient(145deg,#10131b,#07080b 58%,#15080b)}.art-three:before{background:radial-gradient(circle at 45% 25%,var(--glow),transparent 24%),linear-gradient(145deg,#170b0f,#07080a 58%,#0f1218)}.poster-art i{position:relative;z-index:2;width:52px;height:52px;display:grid;place-items:center;border-radius:50%;background:rgba(0,0,0,.35);border:1px solid rgba(255,73,84,.25);box-shadow:0 0 18px var(--glow)}.poster-art .icon3d{width:33px;height:33px}.poster>span:last-child{display:block;padding:7px;font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.channel-card,.download-card,.setting{border:1px solid #22252a;border-radius:12px;background:linear-gradient(145deg,#090a0d,#060709);box-shadow:0 6px 15px rgba(0,0,0,.18)}.channel-card{display:grid;grid-template-columns:43px 1fr auto;gap:8px;align-items:center;padding:8px;margin:6px 0}.channel-card:active{border-color:#393c43}.logo-slot{width:39px;height:39px;border-radius:9px;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#171a20,#050608);border:1px solid #20232a;position:relative;box-shadow:inset 0 0 9px rgba(255,255,255,.02)}.channel-logo{width:100%;height:100%;object-fit:contain;padding:3px;background:#050608}.logo-fallback{display:none;width:100%;height:100%;place-items:center;font-weight:800;font-size:11px;color:var(--accent2);background:radial-gradient(circle,#241014,#07080a);text-shadow:0 0 8px var(--glow)}.logo-slot>.logo-fallback:only-child{display:grid}.card-main b{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card-main small{display:block;font-size:8px;color:#777a82;margin-top:3px}.live{font-size:7px;color:#45dc87}.fav{font-size:18px;color:#5d6067}.fav.selected{color:var(--accent2);text-shadow:0 0 8px var(--glow)}.group-row{display:flex;gap:6px;margin:10px 0;overflow:auto}.group-row .category{min-width:92px;height:72px}.group-row .category img{width:33px;height:33px}.downloads-list,.settings-list{display:grid;gap:7px}.download-card{display:flex;align-items:center;gap:9px;padding:8px}.download-art{width:47px;height:58px;border-radius:8px;display:grid;place-items:center;overflow:hidden;position:relative;border:1px solid #24272d;background:#08090c}.download-art:before{content:"";position:absolute;inset:-25%;background:linear-gradient(145deg,#210a0e,#08090c 58%,#17080b);transform:rotate(-8deg)}.download-art.art-two:before{background:linear-gradient(145deg,#111722,#08090c 58%,#17080b)}.download-art.art-three:before{background:linear-gradient(145deg,#1b0c10,#08090c 58%,#10131a)}.download-art .icon3d{position:relative;z-index:2;width:29px;height:29px}.download-card>div{min-width:0}.download-card b{font-size:10px}.download-card small{display:block;color:#777;font-size:8px;margin-top:4px}.progress{height:4px;background:#202228;border-radius:4px;margin-top:7px;overflow:hidden}.progress i{display:block;height:100%;background:var(--accent2);box-shadow:0 0 7px var(--glow)}.done,.cancel{width:27px;height:27px;border:1px solid #2b2e35;border-radius:8px;color:#777;background:#08090b;font-size:15px}.setting{display:flex;align-items:center;gap:9px;padding:9px;text-align:left}.setting img{width:31px;height:31px}.setting b{font-size:10px}.setting small{display:block;font-size:8px;color:#777a82;margin-top:2px}.empty{border:1px dashed #26292e;border-radius:12px;padding:28px;text-align:center;color:#65676e;font-size:10px;margin-top:10px}
+/* drawer/toast */
+.drawer{position:fixed;z-index:100;inset:0;background:rgba(0,0,0,.70);backdrop-filter:blur(5px)}.drawer-panel{width:78%;max-width:320px;height:100%;background:linear-gradient(180deg,#090a0d,#050608);border-right:1px solid var(--glow);padding:20px 15px;box-shadow:10px 0 30px var(--glow);animation:drawerIn .22s ease-out}@keyframes drawerIn{from{transform:translateX(-100%)}to{transform:none}}.drawer-brand{font-family:"Brush Script MT","Segoe Script",cursive;color:var(--accent2);font-size:29px;margin:25px 8px;text-shadow:0 0 12px var(--glow)}.drawer-brand small{font:400 11px system-ui;color:#999}.drawer-panel>button:not(.drawer-close){display:block;width:100%;text-align:left;padding:12px 10px;border-bottom:1px solid #15171b;color:#c8c9cd;font-size:11px}.drawer-close{float:right;font-size:27px;color:#bbb}.toast{position:fixed;z-index:200;left:50%;bottom:100px;transform:translate(-50%,15px);max-width:calc(100% - 40px);background:#121418;border:1px solid #2b2e34;border-radius:11px;padding:9px 12px;font-size:9px;opacity:0;pointer-events:none;transition:.2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:700px){body{background:#0b0c0f}.app{box-shadow:0 0 70px rgba(0,0,0,.7)}}@media(max-width:370px){.brand span{font-size:33px}.brand b{font-size:11px}.bottom-nav{height:69px}.nav img{width:26px;height:26px}.nav small{font-size:7px}.video-wrap{height:148px}.round-control{width:34px;height:34px}.center-play{width:47px;height:47px}.category{height:88px}.poster-art{height:114px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+.icon-refresh,.icon-sliders{transform:perspective(520px) rotateX(5deg) rotateY(7deg) rotateZ(2deg)}
+.icon-settings,.icon-info{transform:perspective(520px) rotateX(3deg) rotateY(-10deg) rotateZ(-3deg)}
+.icon-cast,.icon-fullscreen{transform:perspective(520px) rotateX(6deg) rotateY(-5deg) rotateZ(-1deg)}
+.icon-play,.icon-pause{transform:perspective(520px) rotateX(4deg) rotateY(-9deg) rotateZ(-4deg)}
+.icon-volume,.icon-lock,.icon-cc{transform:perspective(520px) rotateX(3deg) rotateY(6deg) rotateZ(1deg)}
+.icon-search,.icon-channels,.icon-films,.icon-downloads,.icon-home{transform:perspective(520px) rotateX(4deg) rotateY(-7deg) rotateZ(-2deg)}
+/* Inner player control language: soft oval dock + corner tools */
+.visual{isolation:isolate}
+.visual:global{}
+.floating-tools{position:absolute;right:8px;bottom:7px;z-index:4;display:flex;align-items:center;gap:4px;padding:4px 5px;border:1px solid rgba(255,53,68,.18);border-radius:999px;background:rgba(2,2,3,.72);box-shadow:0 5px 16px rgba(0,0,0,.45),0 0 12px var(--glow);backdrop-filter:blur(8px)}
+.float-tool{min-width:27px;height:25px;padding:0 7px;border:1px solid #282b31;border-radius:999px;background:linear-gradient(145deg,#111216,#060709);color:#cfd0d4;font-size:8px;font-weight:800;display:grid;place-items:center;box-shadow:inset 0 0 7px rgba(255,255,255,.018),0 0 6px var(--glow);transition:.2s}
+.float-tool:hover,.float-tool:focus-visible{border-color:rgba(255,65,78,.5);color:var(--accent2);box-shadow:0 0 10px var(--glow),inset 0 0 8px var(--glow)}
+.glyph-control{font-family:Arial,sans-serif;font-size:27px;font-weight:300;line-height:1;color:#eee;text-shadow:0 0 8px var(--glow)}
+.glyph-control:active{color:var(--accent2)}
+.player-actions button{border:1px solid transparent;border-radius:999px;transition:.2s}
+.player-actions button:hover{border-color:rgba(255,55,68,.2);background:var(--glow);box-shadow:0 0 9px var(--glow)}
+.controls{position:relative}
+.controls:before{content:"";position:absolute;left:50%;top:-4px;width:54px;height:2px;transform:translateX(-50%);border-radius:99px;background:rgba(255,62,73,.22);box-shadow:0 0 8px var(--glow)}
+@media(max-width:370px){.floating-tools{right:6px;bottom:6px}.float-tool{min-width:25px;height:23px;padding:0 6px;font-size:7px}}
+
+/* Premium navy-black shell + restrained bottom illumination */
+body{background:#02040a}
+.app{background:radial-gradient(620px 280px at 50% -100px,rgba(22,35,67,.22),transparent 68%),linear-gradient(180deg,#03050a 0%,#020307 52%,#020207 100%)}
+.topbar{height:82px}
+.top-icon{background:rgba(8,12,20,.42);border:1px solid rgba(86,101,132,.12);box-shadow:inset 0 0 12px rgba(255,255,255,.012)}
+.brand span{text-shadow:0 0 4px var(--glow),0 0 12px var(--glow)}
+.brand b{color:#6f7480}
+.url-box,.player,.info-card,.searchbox,.category,.channel-card,.download-card,.setting{border-color:#1b2432;background:linear-gradient(145deg,#080b11,#030509)}
+.player{box-shadow:0 18px 38px rgba(0,0,0,.5),0 0 18px var(--glow)}
+.player-head{background:linear-gradient(180deg,#0a0d13,#05070b)}
+.live-tag{box-shadow:0 0 6px var(--glow)}
+.vod-dot{width:5px;height:5px;background:#8791a2;border-radius:50%}
+.timeline input,.volume-wrap input{background:linear-gradient(90deg,var(--accent2) 0 48%,#1c2430 48%)}
+.info-card{min-height:118px}
+.connection-card{overflow:hidden}
+.connection-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:3px 0 5px}
+.connection-grid>div{border:1px solid #151d29;border-radius:8px;background:#05080d;padding:5px 6px;min-width:0}
+.connection-grid small{display:block;font-size:6px;color:#686f7c;letter-spacing:.4px}
+.connection-grid b{display:block;font-size:8px;color:#d8dbe1;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.live-quality{font-size:7px;letter-spacing:.3px}
+.live-quality.good{color:#49d889}.live-quality.warn{color:#d9a14f}.live-quality.bad{color:var(--accent2)}
+.bottom-nav{border-color:var(--glow);box-shadow:0 16px 38px rgba(0,0,0,.68),0 0 20px var(--glow),inset 0 0 18px var(--glow)}
+.bottom-nav:before{inset:-8px;border-radius:32px;box-shadow:0 10px 24px var(--glow),0 0 30px var(--glow);filter:blur(1px)}
+.bottom-nav:after{content:"";position:absolute;left:12%;right:12%;bottom:-6px;height:13px;border-radius:50%;background:radial-gradient(ellipse,var(--glow),transparent 70%);filter:blur(7px);pointer-events:none}
+.nav.active:after{box-shadow:0 0 7px var(--glow)}
+.icon3d,.nav img,.top-icon>img,.tiny3d{filter:drop-shadow(1px 2px 2px rgba(0,0,0,.68)) drop-shadow(0 0 3px var(--glow))}
+.icon3d:hover,.nav:hover img,.top-icon:hover>img,.tiny3d:hover{filter:drop-shadow(2px 4px 3px rgba(0,0,0,.72)) drop-shadow(0 0 5px var(--glow))}
+@media(max-width:370px){.connection-grid b{font-size:7px}.connection-grid small{font-size:5.5px}}
+
+/* FINAL MOBILE POLISH — compact app-like chrome */
+.app{padding-bottom:88px;background:radial-gradient(520px 260px at 50% -80px,var(--glow),transparent 68%),#030304}
+.topbar{height:76px;padding:7px 13px 0;grid-template-columns:40px 1fr 78px}
+.top-icon{width:38px;height:38px;border-radius:12px}
+.top-icon>img{width:27px;height:27px;transform:perspective(520px) rotateX(4deg) rotateY(-8deg) rotateZ(-2deg);filter:drop-shadow(0 2px 2px rgba(0,0,0,.75)) drop-shadow(0 0 4px var(--glow))}
+.top-icon:hover>img{transform:perspective(520px) rotateX(6deg) rotateY(-11deg) rotateZ(-3deg) translateY(-1px) scale(1.03)}
+.brand span{text-shadow:0 0 4px var(--glow),0 0 12px var(--glow)}
+#content{padding:1px 13px 18px}
+/* subtle physical tilt + restrained glow on all supplied 3D icons */
+.icon3d,.nav img,.tiny3d{transform:perspective(600px) rotateX(5deg) rotateY(-8deg) rotateZ(-1.5deg);transform-style:preserve-3d;filter:drop-shadow(1px 2px 2px rgba(0,0,0,.72)) drop-shadow(0 0 4px var(--glow))}
+.icon3d:hover,.nav:hover img,.tiny3d:hover{transform:perspective(600px) rotateX(7deg) rotateY(-11deg) rotateZ(-2deg) translateY(-1px) scale(1.035);filter:drop-shadow(2px 3px 3px rgba(0,0,0,.75)) drop-shadow(0 0 6px var(--glow))}
+/* smaller bottom bar, inner light line, oval shape */
+.bottom-nav{bottom:8px;width:min(calc(100% - 40px),386px);height:64px;padding:4px 5px 3px;border-radius:24px;border:1px solid color-mix(in srgb,var(--accent) 16%,transparent);background:linear-gradient(180deg,rgba(8,9,12,.96),rgba(3,4,6,.97));box-shadow:0 12px 28px rgba(0,0,0,.68),0 0 17px var(--glow),inset 0 1px 0 rgba(255,255,255,.035),inset 0 0 16px var(--glow);backdrop-filter:blur(15px)}
+.bottom-nav:before{inset:1px;border-radius:23px;box-shadow:inset 0 0 9px var(--glow),0 0 8px var(--glow)}
+.bottom-nav:after{left:17%;right:17%;bottom:-4px;height:8px;border-radius:50%;background:radial-gradient(ellipse,var(--glow),transparent 72%);filter:blur(6px)}
+.nav{border-radius:17px;gap:0;perspective:400px}
+.nav img{width:25px;height:25px}
+.nav small{font-size:7.5px;margin-top:1px}
+.nav.active:after{bottom:1px;width:27px;height:2px;box-shadow:0 0 6px var(--glow)}
+/* cleaner player proportions */
+.url-row{grid-template-columns:1fr 69px;gap:6px}
+.url-box,.play-btn{height:42px;border-radius:12px}
+.player{border-radius:14px}
+.video-wrap{height:154px}
+.info-grid{gap:6px;margin-top:8px}
+.info-card{min-height:112px;border-radius:12px;padding:8px}
+/* no old monitor/sheet visuals if present */
+.status-sheet,#statusSheet,.live-status,.stream-monitor{display:none!important}
+@media(max-width:370px){.bottom-nav{height:61px;width:calc(100% - 34px)}.nav img{width:23px;height:23px}.nav small{font-size:7px}.video-wrap{height:145px}}
+/* Glass 3D system + live themes */
+:root{--accent:#ff3042;--accent2:#ff6570;--glow:rgba(255,48,66,.22);--bg:#030304;--panel:#08090c;--glass:rgba(255,255,255,.055);--glass-line:rgba(255,255,255,.12)}
+html,body{background:var(--bg)}
+.app{background:radial-gradient(800px 380px at 50% -140px,var(--glow),transparent 64%),var(--bg)}
+.brand span{color:var(--accent);text-shadow:0 0 6px var(--accent),0 0 18px var(--glow),0 0 32px var(--glow)}
+.glass-header{position:relative}.glass-header:after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--glass-line),transparent);opacity:.65}
+.glass-icon{background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px rgba(255,255,255,.08),0 8px 18px rgba(0,0,0,.35),0 0 14px var(--glow);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.menu-glyph{width:25px;display:grid;gap:5px}.menu-glyph i{display:block;height:2px;border-radius:99px;background:linear-gradient(90deg,#fff,var(--accent2));box-shadow:0 0 8px var(--glow)}
+.icon3d,.nav img,.top-icon>img,.tiny3d{filter:drop-shadow(0 3px 4px rgba(0,0,0,.72)) drop-shadow(0 0 7px var(--glow));}
+.icon3d{border-radius:14px}
+.nav{position:relative}.nav:before{content:"";position:absolute;inset:5px 10px 27px;border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.055);opacity:0;transition:.2s;pointer-events:none}.nav.active:before{opacity:1;box-shadow:inset 0 1px rgba(255,255,255,.08),0 0 15px var(--glow)}
+.bottom-nav{background:linear-gradient(145deg,rgba(18,18,23,.82),rgba(3,3,5,.88));border-color:color-mix(in srgb,var(--accent) 45%,#222 55%);box-shadow:0 -8px 28px rgba(0,0,0,.45),0 0 22px var(--glow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.nav.active small{color:var(--accent2)}.nav.active:after{background:var(--accent)}
+.theme-panel,.icon-vault{margin:12px 0;border:1px solid rgba(255,255,255,.10);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.018));box-shadow:inset 0 1px rgba(255,255,255,.07),0 16px 30px rgba(0,0,0,.25);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);overflow:hidden}
+.theme-panel-head,.vault-head{display:flex;align-items:center;justify-content:space-between;padding:13px 13px 9px}.theme-panel-head b,.vault-head b{display:block;font-size:10px;letter-spacing:.5px}.theme-panel-head small,.vault-head small{display:block;color:#777b84;font-size:8px;margin-top:4px}.theme-orb{width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--accent) 32%,transparent 70%),var(--accent);box-shadow:0 0 18px var(--glow)}
+.theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:0 10px 11px}.theme-choice{min-height:73px;padding:7px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.20);text-align:left}.theme-choice.selected{border-color:var(--accent);box-shadow:0 0 13px var(--glow),inset 0 0 15px rgba(255,255,255,.025)}.theme-preview{display:block;height:25px;border-radius:8px;background:radial-gradient(circle at 28% 25%,#fff,var(--preview) 26%,transparent 62%),linear-gradient(145deg,#101116,#050507);box-shadow:inset 0 1px rgba(255,255,255,.15),0 0 10px var(--previewGlow);margin-bottom:6px}.theme-choice b{display:block;font-size:8px}.theme-choice small{color:#6f737b;font-size:7px}
+.vault-badge{font-size:8px;padding:5px 7px;border-radius:8px;color:var(--accent2);border:1px solid var(--accent);box-shadow:0 0 10px var(--glow)}.vault-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:0 10px 10px}.vault-icon{min-height:76px;border:1px solid rgba(255,255,255,.065);border-radius:12px;background:rgba(0,0,0,.18);display:grid;place-items:center;padding:5px}.vault-icon img{width:46px;height:46px;object-fit:contain;filter:drop-shadow(0 4px 5px rgba(0,0,0,.7)) drop-shadow(0 0 8px var(--glow))}.vault-icon small{font-size:7px;color:#8b8e96}.vault-link{display:block;padding:10px 12px;color:var(--accent2);font-size:8px;border-top:1px solid rgba(255,255,255,.07);text-decoration:none}
+.setting{background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012))!important;border-color:rgba(255,255,255,.075)!important;box-shadow:inset 0 1px rgba(255,255,255,.04)}
+.drawer-panel{background:linear-gradient(145deg,rgba(20,20,25,.96),rgba(3,3,6,.98))!important;border-right:1px solid rgba(255,255,255,.10)!important;box-shadow:12px 0 40px rgba(0,0,0,.6),0 0 24px var(--glow)!important;backdrop-filter:blur(18px)}
+
+/* V4: polished 3D glass actions + reliable navigation */
+.copy{display:grid;place-items:center;padding:3px;overflow:hidden}
+.copy img{width:21px;height:21px;object-fit:contain;filter:drop-shadow(0 2px 3px rgba(0,0,0,.72)) drop-shadow(0 0 6px var(--glow));}
+.copy:hover{border-color:var(--accent);box-shadow:0 0 12px var(--glow),inset 0 0 10px rgba(255,255,255,.035)}
+.play-btn{display:flex;align-items:center;justify-content:center;gap:6px}
+.play-btn img{width:25px;height:25px;object-fit:contain;filter:drop-shadow(0 2px 3px rgba(0,0,0,.78)) drop-shadow(0 0 7px var(--glow));}
+.play-btn span{font-weight:600;letter-spacing:.35px}
+.nav{touch-action:manipulation}
+
+/* V8 reliable navigation + expanded 3D control icon vault */
+.nav{color:inherit;text-decoration:none;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+.nav:focus-visible{outline:1px solid var(--accent);outline-offset:-2px}
+.emoji3d{width:24px;height:24px;object-fit:contain;vertical-align:middle}
+.play-btn .emoji3d{width:24px;height:24px}
+.copy .emoji3d{width:22px;height:22px}
+.round-control .emoji3d{width:20px;height:20px}
+.float-tool .emoji3d{width:20px;height:20px}
+.quality-badge{font-size:7px;line-height:1;padding:3px 4px;border-radius:5px;color:#fff;border:1px solid var(--accent);box-shadow:0 0 8px var(--glow)}
+.float-tool{display:inline-flex;align-items:center;justify-content:center;gap:3px}
+.vault-subhead{display:flex;align-items:end;justify-content:space-between;padding:10px 12px 7px;border-top:1px solid rgba(255,255,255,.07);}
+.vault-subhead b{font-size:9px;letter-spacing:.4px}.vault-subhead small{font-size:7px;color:#777b84}
+.control-vault .vault-icon{min-height:72px}
+.control-vault .vault-icon .emoji3d{width:42px;height:42px}
+
+
+
+/* ===== v4.2 unified icons + gestures + colors sheet ===== */
+.svg-ico{display:inline-flex;align-items:center;justify-content:center;width:1.15em;height:1.15em;color:var(--accent,var(--accent2));line-height:0}
+.svg-ico svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 6px var(--glow))}
+.round-control .svg-ico{width:18px;height:18px;color:#fff}
+.round-control.center-play .svg-ico{width:28px;height:28px}
+.glyph-control .svg-ico{width:16px;height:16px;color:var(--accent2,var(--accent2))}
+.float-tool .svg-ico{width:15px;height:15px;color:var(--accent)}
+.play-btn .svg-ico{width:18px;height:18px;color:#fff;margin-inline-end:4px}
+.copy .svg-ico{width:18px;height:18px;color:var(--accent)}
+.tiny3d .svg-ico,.player-actions .svg-ico{width:18px;height:18px}
+.setting .svg-ico{width:22px;height:22px;flex-shrink:0}
+
+/* tint 3D png icons toward accent */
+.icon3d,.nav img,.top-icon img,.tiny3d img{
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.55)) drop-shadow(0 0 8px var(--glow,var(--glow)));
+}
+html[data-ico="flat"] .icon3d,html[data-ico="flat"] .nav img{filter:none;opacity:.95}
+html[data-ico="glow"] .icon3d,html[data-ico="glow"] .nav img{
+  filter:drop-shadow(0 0 10px var(--glow)) brightness(1.08) saturate(1.2);
+}
+
+/* gesture HUD */
+.gesture-hud{
+  position:absolute;left:50%;top:42%;transform:translate(-50%,-50%) scale(.92);
+  background:rgba(0,0,0,.72);color:#fff;padding:10px 18px;border-radius:14px;
+  font-size:15px;font-weight:700;letter-spacing:.3px;opacity:0;pointer-events:none;
+  transition:opacity .15s,transform .15s;z-index:20;backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.1);white-space:nowrap;
+}
+.gesture-hud.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+/* fullscreen player */
+.player:fullscreen,.player:-webkit-full-screen{
+  width:100%;height:100%;max-width:none;border-radius:0;background:#000;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.player:fullscreen .video-wrap,.player:-webkit-full-screen .video-wrap{
+  flex:1;height:100%;
+}
+.player:fullscreen video,.player:-webkit-full-screen video{
+  width:100%;height:100%;object-fit:contain;
+}
+
+/* colors sheet */
+.colors-sheet .sheet-hint{font-size:12px;color:#888;margin:0 0 12px}
+.color-presets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.color-preset{
+  display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px;
+  border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
+  color:#ddd;font-size:11px;cursor:pointer;
+}
+.color-preset i{width:28px;height:28px;border-radius:50%;background:var(--p);box-shadow:0 0 12px var(--p)}
+.color-preset.on{border-color:var(--p);box-shadow:0 0 14px color-mix(in srgb,var(--p) 35%,transparent)}
+.custom-pick-row{display:flex;align-items:center;justify-content:space-between;padding:10px 4px;margin-bottom:8px;color:#ddd;font-size:14px}
+.custom-pick-row input[type=color]{width:48px;height:36px;border:none;border-radius:10px;background:transparent;cursor:pointer}
+.sheet-opts{margin:8px 0}
+.sheet-reset{
+  width:100%;margin-top:10px;padding:12px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);background:transparent;color:#bbb;font-size:14px;
+}
+
+/* smoother nav */
+.bottom-nav{transition:box-shadow .25s}
+.nav{transition:background .2s,transform .15s}
+.nav:active{transform:scale(.94)}
+.round-control:active,.float-tool:active,.play-btn:active{transform:scale(.92)}
+
+/* hide old theme grid clutter if any remnant */
+.theme-panel{display:none}
+
+/* ===== v4.2.1 polish ===== */
+.brand{display:flex;flex-direction:column;align-items:center;line-height:1.05;gap:1px}
+.brand-name,.brand span.brand-name{
+  font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;
+  font-size:22px;color:var(--accent,var(--accent2));
+  text-shadow:0 0 18px var(--glow);letter-spacing:.2px;
+}
+.brand-sub,.brand b.brand-sub{
+  font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:lowercase;
+  color:rgba(255,255,255,.38)!important;opacity:1!important;
+}
+
+/* menu button like bottom nav glass */
+#menuBtn.top-icon{
+  border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border-radius:14px;width:40px;height:40px;
+  box-shadow:0 0 12px var(--glow);
+}
+.menu-glyph{display:flex;flex-direction:column;gap:4px;width:16px}
+.menu-glyph i{display:block;height:2px;border-radius:2px;background:var(--accent);box-shadow:0 0 6px var(--glow)}
+
+/* paste chip + play button - match bottom nav glass */
+.glass-chip,.copy.glass-chip{
+  width:36px;height:36px;border-radius:12px;flex-shrink:0;
+  border:1px solid var(--glow);
+  background:rgba(4,5,7,.9);
+  box-shadow:0 0 14px var(--glow), inset 0 0 10px var(--glow);
+  display:grid;place-items:center;
+}
+.glass-chip .svg-ico{width:16px;height:16px;color:var(--accent)}
+
+.glass-play,.play-btn.glass-play{
+  display:inline-flex;align-items:center;gap:6px;
+  height:40px;padding:0 14px 0 12px;border-radius:14px;
+  border:1px solid var(--glow);
+  background:linear-gradient(180deg,var(--glow),var(--glow));
+  color:#fff;font-weight:800;font-size:13px;letter-spacing:.6px;
+  box-shadow:0 0 18px var(--glow), inset 0 1px rgba(255,255,255,.1);
+}
+.glass-play .play-ico .svg-ico{width:14px;height:14px;color:#fff}
+.glass-play .quality-badge{display:none}
+.url-box{
+  border-radius:14px!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  background:rgba(4,5,7,.85)!important;
+  box-shadow:inset 0 0 12px var(--glow);
+  min-height:40px;
+}
+
+/* transport same accent color */
+.round-control{
+  border:1px solid var(--glow)!important;
+  background:rgba(8,9,12,.85)!important;
+  color:var(--accent)!important;
+  box-shadow:0 0 10px var(--glow);
+}
+.round-control small{color:var(--accent2,var(--accent2))!important;font-size:8px}
+.round-control .svg-ico{color:var(--accent)!important}
+.center-play{
+  border-color:var(--accent)!important;
+  box-shadow:0 0 20px var(--glow)!important;
+}
+.float-tool{
+  border:1px solid var(--glow)!important;
+  background:rgba(8,9,12,.9)!important;
+  color:var(--accent)!important;
+}
+.float-tool .svg-ico{color:var(--accent)!important}
+.float-tool b{color:var(--accent2)!important}
+
+/* control bar icons */
+.ctrl-btn{
+  width:34px;height:34px;border-radius:11px;border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);display:grid;place-items:center;
+  color:var(--accent);
+}
+.ctrl-btn .svg-ico{width:16px;height:16px;color:var(--accent)}
+.volume-wrap{display:flex;align-items:center;gap:6px}
+.volume-wrap input[type=range]{width:72px;accent-color:var(--accent)}
+
+.player-actions button{
+  width:32px;height:32px;border-radius:10px;border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04);display:grid;place-items:center;
+}
+.player-actions .svg-ico{width:15px;height:15px;color:var(--accent)}
+
+/* settings rows more tappable */
+.setting{
+  min-height:56px;padding:12px 14px;gap:12px;
+  border:1px solid rgba(255,255,255,.06);border-radius:16px;
+  background:rgba(255,255,255,.03);margin-bottom:8px;
+  display:flex;align-items:center;width:100%;text-align:start;color:inherit;
+  -webkit-tap-highlight-color:transparent;cursor:pointer;
+}
+.setting:active{background:var(--glow);transform:scale(.99)}
+.setting b{display:block;font-size:14px;color:#eee}
+.setting small{display:block;font-size:11px;color:#888;margin-top:2px}
+
+/* sheet always on top */
+
+/* ===== Sheet (bottom panel) - required for colors/playback/subtitle ===== */
+.sheet{
+  position:fixed;inset:0;z-index:400;
+  background:rgba(0,0,0,.55);
+  display:flex;align-items:flex-end;justify-content:center;
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  animation:sheetIn .2s ease;
+}
+@keyframes sheetIn{from{opacity:0}to{opacity:1}}
+.sheet-panel{
+  width:100%;max-width:480px;max-height:85vh;overflow:auto;
+  background:linear-gradient(180deg,#12141a 0%,#0a0b0f 100%);
+  border:1px solid rgba(255,255,255,.1);
+  border-bottom:none;
+  border-radius:22px 22px 0 0;
+  padding:16px 16px 28px;
+  box-shadow:0 -12px 40px rgba(0,0,0,.5), 0 0 30px var(--glow,var(--glow));
+  color:#eee;
+}
+.sheet-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:12px;
+}
+.sheet-head b{font-size:16px;color:#fff}
+.sheet-x{
+  width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.06);color:#fff;font-size:20px;line-height:1;
+  display:grid;place-items:center;cursor:pointer;
+}
+.sheet-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 4px;border-bottom:1px solid rgba(255,255,255,.06);
+  font-size:14px;color:#ddd;gap:12px;
+}
+.sheet-row select{
+  background:#1a1c22;color:#fff;border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:8px 10px;font-size:13px;min-width:110px;
+}
+.sheet-save{
+  width:100%;margin-top:14px;padding:14px;border-radius:14px;border:none;
+  background:linear-gradient(180deg,var(--accent,var(--accent2)),color-mix(in srgb,var(--accent,var(--accent2)) 70%,#000));
+  color:#fff;font-weight:700;font-size:15px;
+  box-shadow:0 0 18px var(--glow);cursor:pointer;
+}
+.sheet-hint{font-size:12px;color:#888;margin:0 0 12px}
+.toast{
+  position:fixed;left:50%;bottom:90px;transform:translateX(-50%);
+  background:rgba(20,22,28,.95);color:#fff;padding:10px 18px;border-radius:12px;
+  font-size:13px;z-index:500;border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 8px 24px rgba(0,0,0,.4);pointer-events:none;
+}
+
+/* Theme-tinted 3D icons: map red source art toward current accent */
+.icon3d,.nav img,.top-icon img,.tiny3d img,.menu-ico{
+  filter:
+    drop-shadow(0 2px 4px rgba(0,0,0,.55))
+    drop-shadow(0 0 8px var(--glow,var(--glow)))
+    saturate(1.05);
+}
+/* when accent is not red, shift hue roughly via CSS variables helpers */
+html[data-theme="cyan"] .icon3d,
+html[data-theme="cyan"] .nav img,
+html[data-theme="cyan"] .top-icon img{filter:hue-rotate(165deg) saturate(1.3) drop-shadow(0 0 8px var(--glow))}
+html[data-theme="purple"] .icon3d,
+html[data-theme="purple"] .nav img,
+html[data-theme="purple"] .top-icon img{filter:hue-rotate(280deg) saturate(1.25) drop-shadow(0 0 8px var(--glow))}
+html[data-theme="emerald"] .icon3d,
+html[data-theme="emerald"] .nav img,
+html[data-theme="emerald"] .top-icon img{filter:hue-rotate(100deg) saturate(1.2) drop-shadow(0 0 8px var(--glow))}
+html[data-theme="ice"] .icon3d,
+html[data-theme="ice"] .nav img,
+html[data-theme="ice"] .top-icon img{filter:hue-rotate(175deg) saturate(1.15) brightness(1.1) drop-shadow(0 0 8px var(--glow))}
+html[data-theme="gold"] .icon3d,
+html[data-theme="gold"] .nav img,
+html[data-theme="gold"] .top-icon img{filter:hue-rotate(40deg) saturate(1.4) drop-shadow(0 0 8px var(--glow))}
+html[data-theme="blue"] .icon3d,
+html[data-theme="blue"] .nav img,
+html[data-theme="blue"] .top-icon img{filter:hue-rotate(200deg) saturate(1.2) drop-shadow(0 0 8px var(--glow))}
+
+.svg-ico{color:var(--accent,var(--accent2))!important}
+.svg-ico svg{fill:currentColor}
+
+
+/* Theme-matched nav icons */
+.nav-ico{
+  display:grid;place-items:center;width:26px;height:26px;
+  color:rgba(255,255,255,.45);
+  transition:color .2s, filter .2s, transform .15s;
+}
+.nav-ico svg{width:22px;height:22px;display:block;filter:drop-shadow(0 0 0 transparent)}
+.nav.active .nav-ico,
+.nav:hover .nav-ico{
+  color:var(--accent,var(--accent2));
+  filter:drop-shadow(0 0 8px var(--glow,var(--glow)));
+}
+.nav small{color:rgba(255,255,255,.4);font-size:9px;letter-spacing:.4px;margin-top:2px}
+.nav.active small{color:rgba(255,255,255,.42)}
+
+/* Force SVG player icons to always follow accent */
+.svg-ico, .svg-ico svg{color:var(--accent,var(--accent2))!important;fill:currentColor}
+.round-control .svg-ico, .float-tool .svg-ico, .ctrl-btn .svg-ico,
+.player-actions .svg-ico, .copy .svg-ico, .play-btn .svg-ico{
+  color:var(--accent,var(--accent2))!important;
+}
+.center-play .icon3d{filter:drop-shadow(0 0 12px var(--glow))!}
+
+/* bottom nav glass follows accent */
+.bottom-nav{
+  border-color:color-mix(in srgb, var(--accent,var(--accent2)) 25%, transparent)!important;
+  box-shadow:0 0 24px var(--glow,var(--glow)), inset 0 0 20px rgba(255,255,255,.03)!important;
+}
+
+/* Restore 3D bottom icons */
+.nav-3d{
+  width:28px;height:28px;object-fit:contain;display:block;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.5)) drop-shadow(0 0 6px var(--glow,var(--glow)));
+  transition:filter .2s, transform .15s;
+}
+.nav.active .nav-3d{
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.55)) drop-shadow(0 0 12px var(--glow,var(--glow))) brightness(1.08);
+  transform:translateY(-1px);
+}
+.nav small{margin-top:3px}
+
+
+/* ===== THEME BINDING: all UI follows --accent / --glow ===== */
+:root{
+  --accent:#ff3042;
+  --accent2:#ff6570;
+  --glow:rgba(255,48,66,.22);
+}
+
+/* Brand */
+.brand span,.brand-name{color:var(--accent)!important;text-shadow:0 0 14px var(--glow)!important}
+.menu-glyph i{background:var(--accent)!important;box-shadow:0 0 6px var(--glow)!important}
+
+/* Top actions + play/paste */
+.glass-chip,.copy.glass-chip{border-color:color-mix(in srgb,var(--accent) 40%,transparent)!important;box-shadow:0 0 14px var(--glow)!important}
+.glass-chip .svg-ico,.copy .svg-ico{color:var(--accent)!important}
+.glass-play,.play-btn,.play-btn.glass-play{
+  border-color:color-mix(in srgb,var(--accent) 55%,transparent)!important;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 28%,transparent),color-mix(in srgb,var(--accent) 10%,transparent))!important;
+  box-shadow:0 0 18px var(--glow)!important;
+  color:#fff!important;
+}
+.url-box{box-shadow:inset 0 0 12px color-mix(in srgb,var(--accent) 6%,transparent)!important}
+
+/* DETECT / LIVE */
+.live-tag{border-color:var(--accent)!important;color:var(--accent2)!important;box-shadow:0 0 8px var(--glow)!important}
+.live-dot{background:var(--accent)!important;box-shadow:0 0 7px var(--accent)!important}
+.detect-btn,.live-tag.detect,#detectBtn{border-color:var(--accent)!important;color:var(--accent)!important}
+
+/* Player rings + transport */
+.visual:before,.visual:after{border-color:color-mix(in srgb,var(--accent) 28%,transparent)!important;box-shadow:0 0 18px var(--glow)!important}
+.round-control{
+  border-color:color-mix(in srgb,var(--accent) 40%,transparent)!important;
+  box-shadow:0 5px 12px rgba(0,0,0,.35),0 0 10px var(--glow)!important;
+}
+.round-control .svg-ico,.round-control small{color:var(--accent)!important}
+.center-play{
+  border-color:var(--accent)!important;
+  box-shadow:0 6px 15px rgba(0,0,0,.45),0 0 20px var(--glow)!important;
+}
+.float-tool{
+  border-color:color-mix(in srgb,var(--accent) 35%,transparent)!important;
+  color:var(--accent)!important;
+}
+.float-tool .svg-ico,.float-tool b{color:var(--accent)!important}
+.float-tool:hover{border-color:var(--accent)!important;color:var(--accent2)!important;box-shadow:0 0 10px var(--glow)!important}
+.glyph-control{text-shadow:0 0 8px var(--glow)!important}
+.glyph-control:active{color:var(--accent2)!important}
+
+/* Timeline + volume */
+.timeline input[type=range],.volume-wrap input[type=range]{
+  accent-color:var(--accent)!important;
+  background:linear-gradient(90deg,var(--accent) 0 var(--progress,0%),#1c2430 var(--progress,0%))!important;
+}
+.timeline input::-webkit-slider-thumb,.volume-wrap input::-webkit-slider-thumb{
+  background:var(--accent)!important;border-color:var(--accent2)!important;box-shadow:0 0 6px var(--glow)!important;
+}
+.timeline input::-moz-range-thumb,.volume-wrap input::-moz-range-thumb{
+  background:var(--accent)!important;border-color:var(--accent2)!important;
+}
+.timeline .red,.timeline span.red{color:var(--accent2)!important}
+.mini.active{border-color:var(--accent)!important;color:var(--accent2)!important;box-shadow:0 0 8px var(--glow)!important}
+
+/* Controls */
+.ctrl-btn,.player-actions button{color:var(--accent)!important}
+.ctrl-btn .svg-ico,.player-actions .svg-ico{color:var(--accent)!important}
+.player-actions button:hover{border-color:color-mix(in srgb,var(--accent) 30%,transparent)!important;background:color-mix(in srgb,var(--accent) 6%,transparent)!important}
+
+/* Info cards */
+.info-head{color:var(--accent)!important}
+.info-head span{color:var(--accent)!important}
+.info-row span:last-child{color:var(--accent2)!important}
+.chart svg path,.chart svg polyline,.chart svg line{stroke:var(--accent)!important}
+.chart-meta{color:var(--muted)!important}
+
+/* Bottom nav */
+.bottom-nav{
+  border-color:color-mix(in srgb,var(--accent) 30%,transparent)!important;
+  box-shadow:0 0 24px var(--glow), inset 0 0 20px rgba(255,255,255,.03)!important;
+}
+.nav.active .nav-3d,.nav.active img{
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.55)) drop-shadow(0 0 12px var(--glow)) brightness(1.08)!important;
+}
+.nav.active small{color:rgba(255,255,255,.42)!important}
+.nav.active{background:transparent!important}
+.nav-ico{color:rgba(255,255,255,.45)}
+.nav.active .nav-ico{color:var(--accent)!important;filter:drop-shadow(0 0 8px var(--glow))}
+
+/* Settings */
+.setting .svg-ico,.setting .icon3d{color:var(--accent)!important;filter:drop-shadow(0 0 6px var(--glow))}
+.setting:active{background:color-mix(in srgb,var(--accent) 10%,transparent)!important}
+.sheet-save{
+  background:linear-gradient(180deg,var(--accent),color-mix(in srgb,var(--accent) 70%,#000))!important;
+  box-shadow:0 0 18px var(--glow)!important;
+}
+
+/* SVG global */
+.svg-ico,.svg-ico svg{color:var(--accent)!important;fill:currentColor!important}
+
+/* App ambient glow */
+.app{background:radial-gradient(900px 420px at 50% -160px,var(--glow),transparent 60%)!important}
+.player{box-shadow:0 18px 38px rgba(0,0,0,.5),0 0 18px var(--glow)!important}
+.controls:before{background:var(--accent)!important;box-shadow:0 0 8px var(--glow)!important}
+
+
+/* ===== Icon tint: PNG icons follow theme hue ===== */
+:root{
+  --icon-hue: 0deg;
+  --icon-sat: 1.25;
+  --icon-bri: 1;
+}
+.icon-tint,
+img.icon-tint,
+.nav-3d.icon-tint,
+.top-icon img.icon-tint,
+.icon3d,
+.nav img,
+.top-icon > img,
+.tiny3d img,
+.center-play img,
+.center-play .icon3d{
+  filter:
+    hue-rotate(var(--icon-hue))
+    saturate(var(--icon-sat))
+    brightness(var(--icon-bri))
+    drop-shadow(0 2px 3px rgba(0,0,0,.55))
+    drop-shadow(0 0 8px var(--glow)) !important;
+  transition: filter .25s ease;
+}
+.nav.active .nav-3d.icon-tint,
+.nav.active img{
+  filter:
+    hue-rotate(var(--icon-hue))
+    saturate(calc(var(--icon-sat) * 1.15))
+    brightness(1.08)
+    drop-shadow(0 2px 4px rgba(0,0,0,.6))
+    drop-shadow(0 0 14px var(--glow)) !important;
+}
+
+/* Top squares follow accent */
+.top-icon,
+.top-icon.glass-icon,
+#menuBtn.top-icon{
+  border:1px solid color-mix(in srgb, var(--accent) 35%, transparent) !important;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 12%, rgba(8,12,20,.6)), rgba(8,12,20,.45)) !important;
+  box-shadow: 0 0 12px var(--glow), inset 0 0 10px rgba(255,255,255,.03) !important;
+  border-radius: 13px !important;
+}
+.top-icon:active{
+  background: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+}
+.menu-glyph i{
+  background: var(--accent) !important;
+  box-shadow: 0 0 6px var(--glow) !important;
+}
+
+/* CC button with icon */
+#ccBtn{
+  display:inline-flex; align-items:center; gap:4px;
+  color: var(--accent) !important;
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent) !important;
+}
+#ccBtn .svg-ico{ width:12px; height:12px; }
+#ccBtn.active{
+  background: color-mix(in srgb, var(--accent) 15%, transparent) !important;
+  box-shadow: 0 0 10px var(--glow) !important;
+}
+
+
+/* ===== v4.2.6 remaining red → accent ===== */
+.count-accent, .title .count-accent{color:var(--accent)!important}
+.link, .section-head .link, span.link{
+  color:var(--accent)!important;
+}
+.chip.active, .filter-chip.active, .chips .active,
+button.chip.active, .category-chip.active,
+.search .chip.active, [data-chip].active{
+  border-color:var(--accent)!important;
+  color:var(--accent)!important;
+  box-shadow:0 0 10px var(--glow)!important;
+  background:color-mix(in srgb,var(--accent) 12%,transparent)!important;
+}
+/* channels filter ALL etc - generic active pill */
+.page button.active, .filters button.active, .chip-row button.active,
+.tag.active, .pill.active{
+  border-color:var(--accent)!important;
+  color:var(--accent)!important;
+}
+
+/* Download progress bar */
+.download-card progress, .download-card .progress, .progress-bar,
+.download-card .bar, .dl-progress, .progress > i, .progress-fill{
+  background:var(--accent)!important;
+  accent-color:var(--accent)!important;
+}
+progress::-webkit-progress-value{background:var(--accent)!important}
+progress::-moz-progress-bar{background:var(--accent)!important}
+
+/* Poster / card red glow rings → accent */
+.poster-art, .download-art, .art-one, .art-two, .art-three{
+  box-shadow:inset 0 0 30px color-mix(in srgb,var(--accent) 18%,transparent)!important;
+}
+.poster-art i, .download-art .icon3d, .poster-art .icon3d{
+  filter:hue-rotate(var(--icon-hue)) saturate(var(--icon-sat)) drop-shadow(0 0 10px var(--glow))!important;
+}
+.poster-art::before, .poster .glow{
+  background:radial-gradient(circle, var(--glow), transparent 70%)!important;
+}
+
+/* Drawer matches bottom nav style */
+.drawer-panel{
+  background:linear-gradient(180deg,#0c0e14,#07080c)!important;
+  border-right:1px solid color-mix(in srgb,var(--accent) 25%,transparent)!important;
+  box-shadow:4px 0 30px rgba(0,0,0,.5), 0 0 20px var(--glow)!important;
+}
+.drawer-brand .brand-name, .drawer-brand span.brand-name{
+  color:var(--accent)!important;
+  font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:22px;
+  text-shadow:0 0 14px var(--glow)!important;
+}
+.drawer-brand .brand-sub, .drawer-brand small{
+  color:rgba(255,255,255,.38)!important;font-size:11px;
+}
+.drawer-close{color:#fff!important;border-color:color-mix(in srgb,var(--accent) 30%,transparent)!important}
+.drawer-nav-list{display:flex;flex-direction:column;gap:6px;margin-top:18px;padding:0 8px}
+.drawer-nav{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 14px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.03);
+  color:#eee;font-size:15px;width:100%;text-align:start;
+}
+.drawer-nav:active, .drawer-nav:hover{
+  background:color-mix(in srgb,var(--accent) 12%,transparent)!important;
+  border-color:color-mix(in srgb,var(--accent) 30%,transparent)!important;
+}
+.drawer-ico{
+  width:28px;height:28px;object-fit:contain;
+  filter:hue-rotate(var(--icon-hue)) saturate(var(--icon-sat)) drop-shadow(0 0 8px var(--glow))!important;
+}
+
+/* Force ALL bottom nav icons to always include hue - override any old rules */
+.bottom-nav .nav img,
+.bottom-nav .nav-3d,
+.bottom-nav .icon-tint{
+  filter:hue-rotate(var(--icon-hue)) saturate(var(--icon-sat)) brightness(var(--icon-bri))
+    drop-shadow(0 2px 3px rgba(0,0,0,.55)) drop-shadow(0 0 8px var(--glow))!important;
+}
+.bottom-nav .nav.active img,
+.bottom-nav .nav.active .nav-3d{
+  filter:hue-rotate(var(--icon-hue)) saturate(calc(var(--icon-sat)*1.2)) brightness(1.1)
+    drop-shadow(0 2px 4px rgba(0,0,0,.6)) drop-shadow(0 0 14px var(--glow))!important;
+}
+
+/* Top icons always tinted */
+.top-icon img{
+  filter:hue-rotate(var(--icon-hue)) saturate(var(--icon-sat))
+    drop-shadow(0 2px 3px rgba(0,0,0,.55)) drop-shadow(0 0 6px var(--glow))!important;
+}
+
+/* Category icons on films/channels */
+.category .icon3d, .category img{
+  filter:hue-rotate(var(--icon-hue)) saturate(var(--icon-sat)) drop-shadow(0 0 8px var(--glow))!important;
+}
+
+.chip{
+  border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:6px 12px;
+  background:rgba(255,255,255,.03);color:#aaa;font-size:11px;
+}
+.chip.active{
+  border-color:var(--accent)!important;color:var(--accent)!important;
+  background:color-mix(in srgb,var(--accent) 14%,transparent)!important;
+  box-shadow:0 0 12px var(--glow)!important;
+}
+.progress{
+  height:4px;border-radius:99px;background:#1c2430;overflow:hidden;margin-top:6px;
+}
+.progress i{
+  display:block;height:100%;border-radius:99px;
+  background:var(--accent)!important;
+  box-shadow:0 0 8px var(--glow)!important;
+}
+.filter-btn{
+  border:1px solid color-mix(in srgb,var(--accent) 35%,transparent)!important;
+  color:var(--accent)!important;
+}
+
+/* ===== v4.2.7 Premium player consistency pass ===== */
+:root{
+  --player-gap:6px;
+  --control-bg:rgba(10,12,16,.78);
+  --control-border:color-mix(in srgb,var(--accent) 22%,rgba(255,255,255,.08));
+}
+
+/* Make every theme drive the same visual language — no stale red-only controls. */
+.icon3d,.nav img,.top-icon img,.tiny3d img{
+  filter:
+    hue-rotate(var(--icon-hue,0deg))
+    saturate(var(--icon-sat,1.35))
+    brightness(var(--icon-bri,1))
+    drop-shadow(0 2px 4px rgba(0,0,0,.55))
+    drop-shadow(0 0 8px var(--glow,var(--glow))) !important;
+}
+.icon3d:hover,.nav:hover img,.top-icon:hover img,.tiny3d:hover{
+  filter:
+    hue-rotate(var(--icon-hue,0deg))
+    saturate(1.45)
+    brightness(1.06)
+    drop-shadow(0 3px 5px rgba(0,0,0,.65))
+    drop-shadow(0 0 10px var(--glow)) !important;
+}
+
+/* Platform-style player hierarchy: utility row → focal transport → timeline → controls. */
+.player{
+  border-color:color-mix(in srgb,var(--accent) 18%,#272a30);
+  box-shadow:0 18px 42px rgba(0,0,0,.5),0 0 26px color-mix(in srgb,var(--accent) 7%,transparent);
+}
+.player-head{
+  height:44px;
+  padding:6px 10px;
+  background:linear-gradient(180deg,rgba(17,19,24,.96),rgba(6,7,10,.96));
+  border-bottom:1px solid rgba(255,255,255,.045);
+}
+.stream-left{gap:8px}
+.live-tag{
+  min-width:43px;
+  justify-content:center;
+  border-color:color-mix(in srgb,var(--accent) 70%,transparent) !important;
+  color:var(--accent2) !important;
+  background:color-mix(in srgb,var(--accent) 5%,transparent);
+}
+.stream-title{
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  color:#d9dbe0;
+}
+.player-actions{
+  gap:2px;
+  padding:2px;
+  border:1px solid rgba(255,255,255,.055);
+  border-radius:12px;
+  background:rgba(0,0,0,.28);
+}
+.player-actions button{
+  width:29px;height:29px;
+  border-radius:9px !important;
+}
+.player-actions .svg-ico{width:15px;height:15px}
+
+.video-wrap{
+  height:188px;
+  background:#000;
+}
+.visual{
+  background:
+    radial-gradient(ellipse at center,color-mix(in srgb,var(--accent) 11%,#050203) 0%,#050407 45%,#000 100%);
+}
+.transport{
+  gap:8px;
+  padding:7px 10px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:22px;
+  background:rgba(0,0,0,.40);
+  box-shadow:0 10px 24px rgba(0,0,0,.34),inset 0 1px rgba(255,255,255,.035);
+  backdrop-filter:blur(9px);
+}
+.round-control{
+  width:38px;height:38px;
+  border-color:color-mix(in srgb,var(--accent) 34%,transparent) !important;
+  background:rgba(8,9,12,.82) !important;
+  box-shadow:0 5px 13px rgba(0,0,0,.4),0 0 11px color-mix(in srgb,var(--accent) 10%,transparent);
+}
+.round-control.seek-control{
+  width:40px;height:40px;
+}
+.round-control .svg-ico{width:17px;height:17px}
+.round-control small{font-size:0}
+.center-play{
+  width:54px;height:54px;
+  border-width:1.5px !important;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 16%,#08090c),rgba(0,0,0,.78)) !important;
+}
+.center-play .icon3d{
+  width:34px;height:34px;
+}
+.floating-tools{
+  right:9px;bottom:8px;
+  gap:4px;
+  padding:4px;
+  border-color:color-mix(in srgb,var(--accent) 20%,transparent);
+  background:rgba(3,4,6,.76);
+}
+.float-tool{
+  min-width:29px;height:27px;
+  padding:0 7px;
+  border-color:color-mix(in srgb,var(--accent) 28%,transparent) !important;
+  background:rgba(9,10,13,.92) !important;
+}
+.float-tool .svg-ico{width:15px;height:15px}
+.float-tool b{font-size:7px}
+
+/* Cleaner timeline: stronger active track and consistent accent. */
+.timeline{
+  height:34px;
+  padding:0 10px;
+  gap:7px;
+  background:linear-gradient(180deg,#050608,#030405);
+  border-top:1px solid rgba(255,255,255,.035);
+  border-bottom:1px solid rgba(255,255,255,.035);
+}
+.timeline input[type=range]{
+  --progress:0%;
+  height:4px;
+  background:linear-gradient(90deg,var(--accent) 0 var(--progress),#20242b var(--progress) 100%) !important;
+}
+.timeline input::-webkit-slider-thumb{
+  width:10px;height:10px;
+  background:var(--accent);
+  border:2px solid #fff;
+  box-shadow:0 0 8px var(--glow);
+}
+
+/* Bottom player controls: balanced touch targets and clear grouping. */
+.controls{
+  min-height:47px;
+  padding:6px 9px 8px;
+  background:#030405;
+}
+.control-left,.control-right{gap:5px}
+.ctrl-btn{
+  width:32px;height:32px;
+  border-color:rgba(255,255,255,.07);
+  background:rgba(255,255,255,.035);
+}
+.volume-wrap{gap:5px}
+.volume-wrap input{width:58px !important}
+.mini{
+  height:30px;
+  min-width:38px;
+  border-color:rgba(255,255,255,.08);
+  background:rgba(255,255,255,.035);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+}
+.mini-cc img{
+  width:20px;height:20px;
+}
+.mini-cc .icon3d{
+  width:20px;height:20px;
+}
+
+/* The play CTA uses the same 3D language as the rest of the app. */
+.glass-play,.play-btn.glass-play{
+  min-width:74px;
+  justify-content:center;
+  height:44px;
+  border-radius:13px;
+  border-color:color-mix(in srgb,var(--accent) 62%,transparent) !important;
+  background:linear-gradient(145deg,
+    color-mix(in srgb,var(--accent) 26%,transparent),
+    color-mix(in srgb,var(--accent) 9%,#050608)) !important;
+}
+.glass-play .play-ico .icon3d{
+  width:21px;height:21px;
+}
+
+/* Remove stale red literals from the interactive player surfaces. */
+.copy,.mini,.ctrl-btn,.player-actions button,.float-tool,.round-control{
+  transition:border-color .2s ease,background .2s ease,box-shadow .2s ease,transform .15s ease;
+}
+.copy:hover,.mini:hover,.ctrl-btn:hover,.player-actions button:hover{
+  border-color:color-mix(in srgb,var(--accent) 32%,rgba(255,255,255,.08));
+  background:color-mix(in srgb,var(--accent) 6%,rgba(255,255,255,.035));
+}
+.mini.active{
+  border-color:var(--accent) !important;
+  color:var(--accent2) !important;
+  box-shadow:0 0 10px var(--glow) !important;
+}
+
+/* Small screens: preserve hierarchy without squeezing controls. */
+@media(max-width:370px){
+  .video-wrap{height:176px}
+  .transport{gap:5px;padding:6px 7px}
+  .round-control{width:35px;height:35px}
+  .round-control.seek-control{width:36px;height:36px}
+  .center-play{width:50px;height:50px}
+  .floating-tools{right:6px;bottom:6px}
+  .float-tool{min-width:26px;padding:0 6px}
+  .volume-wrap input{width:45px !important}
+}
+
+/* ===== v4.2.7 Premium UI finalization ===== */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+
+/* Premium player surface: quiet OLED black with one coherent accent language. */
+.player{background:#000;isolation:isolate}
+.player-head{position:relative;z-index:4}
+.player-head:after,.controls:before{content:"";position:absolute;left:12px;right:12px;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--accent) 18%,transparent),transparent);pointer-events:none}
+.player-head:after{bottom:-1px}.controls{position:relative}
+
+/* Primary transport is the focal point, with a restrained glass capsule. */
+.transport{position:relative;z-index:3;min-height:70px;padding:8px 10px;gap:10px;border-radius:26px;border:1px solid rgba(255,255,255,.075);background:linear-gradient(145deg,rgba(24,27,33,.48),rgba(0,0,0,.58));box-shadow:0 14px 32px rgba(0,0,0,.46),inset 0 1px rgba(255,255,255,.08),inset 0 -10px 20px rgba(0,0,0,.16);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.round-control{min-width:48px;min-height:48px;width:48px;height:48px;border-radius:50%;border:1px solid color-mix(in srgb,var(--accent) 25%,rgba(255,255,255,.14))!important;background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(7,9,12,.78))!important;box-shadow:0 8px 16px rgba(0,0,0,.46),inset 0 1px rgba(255,255,255,.10),inset 0 -5px 10px rgba(0,0,0,.22),0 0 12px color-mix(in srgb,var(--accent) 8%,transparent);transition:transform .16s ease,filter .16s ease,box-shadow .2s ease,border-color .2s ease}
+.round-control.seek-control{width:48px;height:48px}.round-control .svg-ico{width:18px;height:18px;color:#f2f4f7!important;filter:drop-shadow(0 1px 2px rgba(0,0,0,.55))}
+.round-control.glyph-control .svg-ico{color:#d9dde4!important}
+.round-control:active{transform:scale(.94);filter:brightness(1.08)}
+.center-play{width:64px;height:64px;min-width:64px;min-height:64px;border-radius:50%;border:1px solid color-mix(in srgb,var(--accent) 70%,rgba(255,255,255,.2))!important;background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 24%,rgba(255,255,255,.08)),color-mix(in srgb,var(--accent) 7%,#050608) 46%,rgba(0,0,0,.84))!important;box-shadow:0 12px 22px rgba(0,0,0,.55),inset 0 1px 2px rgba(255,255,255,.20),inset 0 -8px 16px rgba(0,0,0,.28),0 0 20px color-mix(in srgb,var(--accent) 15%,transparent);}
+.center-play:before{content:"";position:absolute;width:34px;height:17px;top:8px;left:14px;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.28),transparent);filter:blur(2px);transform:rotate(-18deg);pointer-events:none}.center-play .icon3d{width:30px;height:30px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5)) brightness(1.08) saturate(.9)!important}
+.center-play:active{transform:scale(.94);box-shadow:0 8px 16px rgba(0,0,0,.52),inset 0 1px rgba(255,255,255,.14),0 0 14px color-mix(in srgb,var(--accent) 14%,transparent)}
+
+/* Secondary tools stay visually subordinate to transport. */
+.floating-tools{z-index:4;right:10px;bottom:10px;gap:5px;padding:5px;border-radius:14px;background:rgba(2,3,5,.70);border:1px solid rgba(255,255,255,.065);box-shadow:0 8px 18px rgba(0,0,0,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.float-tool{min-width:38px;height:34px;border-radius:11px!important;border:1px solid color-mix(in srgb,var(--accent) 20%,rgba(255,255,255,.08))!important;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(4,5,7,.80))!important;box-shadow:inset 0 1px rgba(255,255,255,.06);gap:5px}
+.float-tool .svg-ico{width:16px;height:16px}.float-tool b{font-size:8px;font-weight:800;letter-spacing:.3px}
+
+/* 48dp touch targets without oversized glyphs. */
+.controls{min-height:58px;padding:6px 10px 8px;gap:8px}
+.ctrl-btn{width:42px;height:42px;min-width:42px;border-radius:12px}.ctrl-btn .svg-ico{width:18px;height:18px}
+.mini{height:40px;min-width:48px;border-radius:12px;padding:0 10px;font-size:9px;font-weight:750}
+.mini-cc{min-width:52px}.mini-cc .icon3d{width:21px;height:21px}
+.volume-wrap{gap:7px}.volume-wrap input{width:62px!important}
+.player-actions button{width:36px;height:36px;border-radius:10px!important}
+.player-actions img{width:22px;height:22px}
+
+/* Timeline hierarchy: thin track, accent progress, neutral buffer. */
+.timeline{height:40px;padding:0 12px;gap:8px;background:linear-gradient(180deg,#07080a,#020304)}
+.timeline input[type=range]{height:4px;border-radius:999px}
+.timeline input::-webkit-slider-thumb{width:11px;height:11px;border:2px solid #fff}.timeline input::-moz-range-thumb{width:11px;height:11px;border:2px solid #fff}
+
+/* Premium state motion, deliberately slow and subtle. */
+@keyframes accentPulse{0%,100%{box-shadow:0 12px 22px rgba(0,0,0,.55),inset 0 1px 2px rgba(255,255,255,.20),inset 0 -8px 16px rgba(0,0,0,.28),0 0 18px color-mix(in srgb,var(--accent) 10%,transparent)}50%{box-shadow:0 12px 22px rgba(0,0,0,.55),inset 0 1px 2px rgba(255,255,255,.20),inset 0 -8px 16px rgba(0,0,0,.28),0 0 23px color-mix(in srgb,var(--accent) 15%,transparent)}}
+.center-play{animation:accentPulse 3.4s ease-in-out infinite}.center-play:focus-visible,.round-control:focus-visible,.ctrl-btn:focus-visible,.mini:focus-visible,.float-tool:focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 70%,white);outline-offset:2px}
+
+/* Fullscreen becomes cinematic: edge gradients, larger transport, restrained utilities. */
+.player:fullscreen,.player:-webkit-full-screen{background:#000}
+.player:fullscreen .player-head,.player:-webkit-full-screen .player-head{background:linear-gradient(180deg,rgba(0,0,0,.82),rgba(0,0,0,0));border-bottom:0}
+.player:fullscreen .video-wrap,.player:-webkit-full-screen .video-wrap{position:relative}
+.player:fullscreen .video-wrap:after,.player:-webkit-full-screen .video-wrap:after{content:"";position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(transparent,rgba(0,0,0,.78));pointer-events:none}
+.player:fullscreen .transport,.player:-webkit-full-screen .transport{transform:scale(1.06)}
+
+@media(max-width:370px){
+  .transport{gap:5px;padding:7px 6px}.round-control,.round-control.seek-control{width:44px;height:44px;min-width:44px;min-height:44px}.center-play{width:58px;height:58px;min-width:58px;min-height:58px}.center-play .icon3d{width:27px;height:27px}.controls{padding-inline:7px}.control-left,.control-right{gap:3px}.volume-wrap input{width:45px!important}.ctrl-btn{width:40px;height:40px;min-width:40px}.mini{min-width:45px}.floating-tools{right:6px;bottom:7px}
+}
+
+@media(orientation:landscape) and (max-height:520px){
+  .player{border-radius:0}.video-wrap{height:min(70vh,360px)}.player-head{height:42px}.controls{min-height:54px}.timeline{height:34px}.transport{transform:scale(.92)}
+}
+
+@media(prefers-reduced-motion:reduce){.center-play{animation:none}.round-control,.ctrl-btn,.mini,.float-tool{transition:none}}
+
+/* ===== v4.2.7 PREMIUM PLAYER CONSISTENCY PATCH ===== */
+:root{
+  --control-size:44px;
+  --control-gap:8px;
+  --control-bg:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018));
+  --control-line:color-mix(in srgb,var(--accent) 25%,rgba(255,255,255,.12));
+}
+
+/* Player is one visual system: no mixed emoji/flat-looking controls. */
+.player{overflow:hidden;background:#020304;border-color:rgba(255,255,255,.09)!important;}
+.player-head{min-height:48px;padding:7px 10px!important;gap:8px;}
+.player-actions{gap:6px!important;}
+.player-actions button,.ctrl-btn,.mini,.float-tool,.round-control{
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  transition:transform .16s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease,filter .2s ease;
+}
+.player-actions button{width:38px!important;height:38px!important;border-radius:13px!important;background:var(--control-bg)!important;border-color:var(--control-line)!important;box-shadow:inset 0 1px rgba(255,255,255,.075),0 5px 12px rgba(0,0,0,.32)!important;}
+.player-actions button:hover,.player-actions button:focus-visible{border-color:color-mix(in srgb,var(--accent) 55%,transparent)!important;box-shadow:0 0 12px var(--glow),inset 0 1px rgba(255,255,255,.1)!important;}
+
+/* Primary transport: symmetric optical rhythm with a deliberately larger play button. */
+.transport{gap:9px!important;padding:12px 15px!important;border-radius:26px!important;background:linear-gradient(145deg,rgba(13,16,22,.88),rgba(2,3,6,.78))!important;border:1px solid rgba(255,255,255,.09)!important;box-shadow:inset 0 1px rgba(255,255,255,.08),0 12px 28px rgba(0,0,0,.38)!important;backdrop-filter:blur(16px);}
+.round-control{width:52px!important;height:52px!important;min-width:52px!important;border-radius:50%!important;border:1px solid color-mix(in srgb,var(--accent) 34%,rgba(255,255,255,.18))!important;background:radial-gradient(circle at 32% 24%,rgba(255,255,255,.11),rgba(255,255,255,.035) 42%,rgba(0,0,0,.34) 100%)!important;box-shadow:inset 0 1px 1px rgba(255,255,255,.11),inset 0 -8px 16px rgba(0,0,0,.24),0 7px 16px rgba(0,0,0,.42),0 0 9px var(--glow)!important;display:grid!important;place-items:center!important;}
+.round-control .svg-ico{width:20px!important;height:20px!important;color:var(--accent)!important;filter:drop-shadow(0 2px 3px rgba(0,0,0,.65)) drop-shadow(0 0 5px var(--glow));}
+.center-play{width:72px!important;height:72px!important;min-width:72px!important;border-width:1.5px!important;border-color:color-mix(in srgb,var(--accent) 78%,white 22%)!important;background:radial-gradient(circle at 33% 23%,rgba(255,255,255,.18),color-mix(in srgb,var(--accent) 15%,rgba(12,16,23,.9)) 38%,rgba(0,0,0,.58) 100%)!important;box-shadow:inset 0 2px 2px rgba(255,255,255,.14),inset 0 -12px 22px rgba(0,0,0,.34),0 10px 22px rgba(0,0,0,.5),0 0 22px var(--glow)!important;position:relative;}
+.center-play:before{content:"";position:absolute;inset:5px;border-radius:50%;border:1px solid rgba(255,255,255,.07);pointer-events:none;}
+.center-play:after{content:"";position:absolute;left:15%;right:15%;top:9%;height:24%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.14),transparent);filter:blur(2px);pointer-events:none;}
+.center-play .icon3d,.center-play .svg-ico{width:30px!important;height:30px!important;position:relative;z-index:1;color:var(--accent)!important;filter:drop-shadow(0 2px 4px rgba(0,0,0,.7)) drop-shadow(0 0 9px var(--glow))!important;}
+.round-control:active,.float-tool:active,.ctrl-btn:active,.mini:active,.player-actions button:active{transform:scale(.94)!important;filter:brightness(1.08);}
+.center-play:active{transform:scale(.96)!important;}
+
+/* Secondary controls: one row, equal optical centers, 48dp+ touch areas. */
+.controls{min-height:66px!important;padding:8px 12px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;background:linear-gradient(180deg,rgba(8,10,14,.96),rgba(3,4,7,.98))!important;border-top:1px solid rgba(255,255,255,.07)!important;}
+.control-cluster{display:flex!important;align-items:center!important;gap:8px!important;min-width:0;}
+.control-tools{justify-content:flex-end;}
+.ctrl-btn,.mini{min-width:48px!important;height:48px!important;border-radius:14px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;background:var(--control-bg)!important;border:1px solid rgba(255,255,255,.09)!important;box-shadow:inset 0 1px rgba(255,255,255,.065),0 5px 12px rgba(0,0,0,.3)!important;color:#e9f6ff!important;}
+.ctrl-btn .svg-ico,.mini .svg-ico{width:21px!important;height:21px!important;color:var(--accent)!important;filter:drop-shadow(0 2px 3px rgba(0,0,0,.65)) drop-shadow(0 0 5px var(--glow));}
+.mini{padding:0 12px!important;font-weight:700!important;font-size:12px!important;letter-spacing:.2px!important;}
+.mini-cc{min-width:76px!important;}
+.mini-cc .cc-ico{width:23px!important;height:23px!important;}
+.mini.active{background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 17%,rgba(255,255,255,.05)),rgba(255,255,255,.015))!important;border-color:color-mix(in srgb,var(--accent) 72%,white 28%)!important;color:var(--accent2)!important;box-shadow:inset 0 1px rgba(255,255,255,.1),0 0 13px var(--glow)!important;}
+.mini.active .svg-ico{color:var(--accent)!important;}
+.volume-wrap{height:48px!important;gap:6px!important;}
+.volume-wrap input[type=range]{width:64px!important;height:4px!important;}
+
+/* Make icon geometry consistent and eliminate old image/emoji treatment in player controls. */
+.player .icon3d{object-fit:contain;}
+.player .svg-ico svg{overflow:visible;}
+.player .svg-ico svg path{vector-effect:non-scaling-stroke;}
+.player .svg-ico[data-ico="lock"],.player .svg-ico[data-ico="volume"],.player .svg-ico[data-ico="mute"],.player .svg-ico[data-ico="settings"],.player .svg-ico[data-ico="info"]{color:var(--accent)!important;}
+
+/* Better CC icon: rounded subtitle panel with balanced CC lettering. */
+.cc-ico svg{filter:none!important;}
+.cc-ico svg path{fill:none!important;stroke:currentColor!important;stroke-width:1.65;stroke-linejoin:round;stroke-linecap:round;}
+.cc-ico svg path:first-child{fill:color-mix(in srgb,var(--accent) 10%,transparent)!important;}
+
+/* Quick tools share the same glass material as transport controls. */
+.floating-tools{gap:7px!important;}
+.float-tool{min-width:58px!important;height:44px!important;padding:0 9px!important;border-radius:14px!important;background:var(--control-bg)!important;border:1px solid var(--control-line)!important;box-shadow:inset 0 1px rgba(255,255,255,.07),0 6px 14px rgba(0,0,0,.34),0 0 7px var(--glow)!important;}
+.float-tool .svg-ico{width:19px!important;height:19px!important;}
+.float-tool b{font-size:10px!important;}
+
+/* Settings: every row gets an actual icon well; subtitle is never a blank square. */
+.settings-list{gap:8px!important;}
+.setting{min-height:72px!important;padding:11px 14px!important;gap:14px!important;border-radius:18px!important;background:linear-gradient(145deg,rgba(255,255,255,.052),rgba(255,255,255,.012))!important;border-color:rgba(255,255,255,.085)!important;box-shadow:inset 0 1px rgba(255,255,255,.055),0 8px 18px rgba(0,0,0,.18)!important;}
+.setting>.svg-ico{width:42px!important;height:42px!important;min-width:42px!important;border-radius:14px!important;padding:9px!important;background:radial-gradient(circle at 32% 22%,rgba(255,255,255,.13),color-mix(in srgb,var(--accent) 10%,rgba(255,255,255,.03)) 48%,rgba(0,0,0,.28))!important;border:1px solid color-mix(in srgb,var(--accent) 28%,rgba(255,255,255,.12))!important;box-shadow:inset 0 1px rgba(255,255,255,.1),0 6px 14px rgba(0,0,0,.3),0 0 10px color-mix(in srgb,var(--glow) 75%,transparent)!important;}
+.setting>.svg-ico svg{width:100%!important;height:100%!important;filter:drop-shadow(0 2px 3px rgba(0,0,0,.65)) drop-shadow(0 0 5px var(--glow));}
+.setting[data-setting="subtitle"]>.svg-ico svg path{fill:none!important;stroke:currentColor!important;stroke-width:1.65;stroke-linejoin:round;stroke-linecap:round;}
+.setting[data-setting="subtitle"]>.svg-ico svg path:first-child{fill:color-mix(in srgb,var(--accent) 11%,transparent)!important;}
+.setting b{font-size:15px!important;line-height:1.25!important;}
+.setting small{font-size:11px!important;line-height:1.35!important;margin-top:4px!important;color:#888e98!important;}
+
+/* Remove stale hard-coded red visual rules from older appended passes. */
+.setting:active{background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 12%,rgba(255,255,255,.04)),rgba(255,255,255,.012))!important;}
+
+/* Fullscreen: cinematic spacing without stretching the controls. */
+.player:fullscreen .controls,.player:-webkit-full-screen .controls{padding:12px 18px!important;min-height:76px!important;background:linear-gradient(180deg,rgba(3,4,7,.3),rgba(3,4,7,.88))!important;border-top:0!important;}
+.player:fullscreen .transport,.player:-webkit-full-screen .transport{transform:translateY(-2px);}
+.player:fullscreen .video-wrap,.player:-webkit-full-screen .video-wrap{background:#000;}
+
+@media(max-width:520px){
+  .transport{gap:6px!important;padding:10px 9px!important;}
+  .round-control{width:46px!important;height:46px!important;min-width:46px!important;}
+  .center-play{width:64px!important;height:64px!important;min-width:64px!important;}
+  .center-play .icon3d,.center-play .svg-ico{width:27px!important;height:27px!important;}
+  .controls{gap:5px!important;padding-inline:8px!important;}
+  .control-cluster{gap:5px!important;}
+  .ctrl-btn,.mini{min-width:46px!important;height:46px!important;}
+  .mini-cc{min-width:70px!important;padding-inline:8px!important;}
+  .volume-wrap input[type=range]{width:52px!important;}
+}
+@media(max-width:390px){
+  .transport{gap:4px!important;padding:9px 7px!important;}
+  .round-control{width:42px!important;height:42px!important;min-width:42px!important;}
+  .center-play{width:58px!important;height:58px!important;min-width:58px!important;}
+  .center-play .icon3d,.center-play .svg-ico{width:24px!important;height:24px!important;}
+  .controls{padding-inline:5px!important;}
+  .ctrl-btn,.mini{min-width:44px!important;height:44px!important;border-radius:13px!important;}
+  .mini-cc{min-width:64px!important;}
+  .volume-wrap input[type=range]{width:42px!important;}
+  .ctrl-btn .svg-ico,.mini .svg-ico{width:19px!important;height:19px!important;}
+}
+
+/* ===== FIX: Remove icon tilting / slanting (ميلان الأيقونات) ===== */
+/* Keep subtle depth via drop-shadow only. No perspective/rotate that causes slant. */
+.icon3d,
+.nav img,
+.top-icon > img,
+.top-icon img,
+.tiny3d,
+.tiny3d img,
+.icon-refresh,
+.icon-sliders,
+.icon-settings,
+.icon-info,
+.icon-cast,
+.icon-fullscreen,
+.icon-play,
+.icon-pause,
+.icon-volume,
+.icon-lock,
+.icon-cc,
+.icon-search,
+.icon-channels,
+.icon-films,
+.icon-downloads,
+.icon-home,
+.round-control img,
+.center-play img,
+.center-play .icon3d,
+.player-actions img,
+.ctrl-btn img {
+  transform: none !important;
+  transform-style: flat !important;
+  perspective: none !important;
+}
+
+.icon3d:hover,
+.nav:hover img,
+.top-icon:hover > img,
+.top-icon:hover img,
+.tiny3d:hover,
+.nav.active img {
+  transform: translateY(-1px) scale(1.04) !important;
+}
+
+/* Keep decorative visual rings mild (optional slight rotation only for atmosphere) */
+.visual:before,
+.visual:after {
+  transform: rotate(-6deg) !important;
+}
+
+/* Ensure nav doesn't inherit perspective */
+.nav {
+  perspective: none !important;
+}
+
+/* ===== STRONG FIX: Kill all downward / slant tilt in player ===== */
+
+/* Visual rings: perfectly horizontal, no rotation */
+.visual:before,
+.visual:after {
+  transform: none !important;
+  rotate: none !important;
+}
+
+/* Center play highlight shine: no tilt */
+.center-play:before {
+  transform: none !important;
+  rotate: none !important;
+  top: 6px !important;
+  left: 50% !important;
+  margin-left: -17px !important;
+  width: 34px !important;
+  height: 14px !important;
+}
+
+/* Force ALL icons inside player area to be completely flat */
+.player img.icon3d,
+.player .icon3d,
+.player .round-control img,
+.player .center-play img,
+.player .center-play .icon3d,
+.player .transport img,
+.player .floating-tools img,
+.player .ctrl-btn img,
+.player .mini img,
+.player .player-actions img {
+  transform: none !important;
+  rotate: none !important;
+  perspective: none !important;
+  transform-style: flat !important;
+}
+
+/* Transport dock itself must stay level */
+.transport {
+  transform: none !important;
+}
+
+/* SVG icons in center-play should be properly sized and centered */
+.center-play .svg-ico {
+  width: 28px !important;
+  height: 28px !important;
+  display: grid !important;
+  place-items: center !important;
+}
+.center-play .svg-ico svg {
+  width: 26px !important;
+  height: 26px !important;
+}
+
+/* Make sure no parent is applying 3D */
+.video-wrap,
+.visual,
+.player {
+  transform: none !important;
+  perspective: none !important;
+}
+
+/* ===== FINAL: Flatten visualizer rings completely ===== */
+.visual:before,
+.visual:after {
+  transform: none !important;
+  rotate: none !important;
+  width: 160% !important;
+  height: 55% !important;
+  left: -30% !important;
+  border-radius: 50% !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+.visual:before {
+  top: 22% !important;
+  opacity: 0.55 !important;
+}
+
+.visual:after {
+  top: 38% !important;
+  opacity: 0.35 !important;
+}
+
+/* ===== COMPLETELY FLAT visualizer background (no tilted arcs) ===== */
+.visual:before,
+.visual:after {
+  content: "" !important;
+  position: absolute !important;
+  left: 5% !important;
+  right: 5% !important;
+  width: auto !important;
+  height: 1px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  rotate: none !important;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent) !important;
+  box-shadow: 0 0 12px var(--glow), 0 0 24px var(--glow) !important;
+  opacity: 0.45 !important;
+}
+
+.visual:before {
+  top: 28% !important;
+}
+
+.visual:after {
+  top: 48% !important;
+  opacity: 0.28 !important;
+}
+
+/* ===== Reduce oversized icons in player ===== */
+
+/* Transport buttons slightly smaller */
+.round-control {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+}
+.round-control.seek-control {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+/* Center play button more balanced */
+.center-play {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  min-height: 52px !important;
+}
+
+/* Icons inside transport (SVG) */
+.round-control .svg-ico {
+  width: 16px !important;
+  height: 16px !important;
+}
+.round-control .svg-ico svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Center play icon */
+.center-play .svg-ico {
+  width: 22px !important;
+  height: 22px !important;
+}
+.center-play .svg-ico svg {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+/* Bottom control bar icons */
+.ctrl-btn .svg-ico,
+.mini .svg-ico {
+  width: 17px !important;
+  height: 17px !important;
+}
+.ctrl-btn .svg-ico svg,
+.mini .svg-ico svg {
+  width: 17px !important;
+  height: 17px !important;
+}
+
+/* Player head action icons */
+.player-actions .svg-ico {
+  width: 14px !important;
+  height: 14px !important;
+}
+.player-actions .svg-ico svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Floating tools (4K / audio) */
+.float-tool .svg-ico {
+  width: 14px !important;
+  height: 14px !important;
+}
+.float-tool .svg-ico svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* Top bar icons */
+.top-icon > img,
+.top-icon img {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+/* Bottom nav icons */
+.nav img,
+.nav .nav-3d {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+/* Media queries keep reduced sizes */
+@media (max-width: 520px) {
+  .round-control { width: 38px !important; height: 38px !important; min-width: 38px !important; }
+  .center-play { width: 50px !important; height: 50px !important; min-width: 50px !important; }
+  .center-play .svg-ico, .center-play .svg-ico svg { width: 20px !important; height: 20px !important; }
+  .round-control .svg-ico, .round-control .svg-ico svg { width: 15px !important; height: 15px !important; }
+  .ctrl-btn .svg-ico, .mini .svg-ico,
+  .ctrl-btn .svg-ico svg, .mini .svg-ico svg { width: 16px !important; height: 16px !important; }
+}
+
+@media (max-width: 390px) {
+  .round-control { width: 36px !important; height: 36px !important; min-width: 36px !important; }
+  .center-play { width: 46px !important; height: 46px !important; min-width: 46px !important; }
+  .center-play .svg-ico, .center-play .svg-ico svg { width: 18px !important; height: 18px !important; }
+  .round-control .svg-ico, .round-control .svg-ico svg { width: 14px !important; height: 14px !important; }
+}
+
+/* ========== LAYOUT FIX v4: consistent sizes + no overlap ========== */
+/* Visual area: stack transport + floating tools cleanly */
+.visual{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:12px !important;
+  padding:14px 10px !important;
+  position:relative !important;
+  isolation:isolate !important;
+}
+.visual:before,.visual:after{display:none !important} /* remove old tilted arcs clutter */
+
+/* Transport bar: balanced spacing, each button has room */
+.transport{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  padding:8px 12px !important;
+  border-radius:28px !important;
+  position:relative !important;
+  z-index:3 !important;
+  margin:0 !important;
+}
+
+/* Consistent round controls */
+.round-control{
+  width:42px !important;
+  height:42px !important;
+  min-width:42px !important;
+  min-height:42px !important;
+  border-radius:50% !important;
+  flex-shrink:0 !important;
+}
+.round-control.seek-control{
+  width:42px !important;
+  height:42px !important;
+}
+.center-play{
+  width:56px !important;
+  height:56px !important;
+  min-width:56px !important;
+  min-height:56px !important;
+}
+
+/* Icons sizes consistent */
+.round-control .svg-ico,
+.round-control .svg-ico svg{
+  width:18px !important;
+  height:18px !important;
+}
+.center-play .svg-ico,
+.center-play .svg-ico svg{
+  width:24px !important;
+  height:24px !important;
+}
+
+/* Floating tools: sit BELOW transport, no overlap, right-aligned */
+.floating-tools{
+  position:static !important;
+  right:auto !important;
+  bottom:auto !important;
+  left:auto !important;
+  top:auto !important;
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+  padding:5px 8px !important;
+  border-radius:16px !important;
+  align-self:flex-end !important;
+  margin:0 4px 0 0 !important;
+  z-index:2 !important;
+}
+.float-tool{
+  min-width:36px !important;
+  height:32px !important;
+  padding:0 10px !important;
+  border-radius:12px !important;
+  gap:5px !important;
+  flex-shrink:0 !important;
+}
+.float-tool .svg-ico,
+.float-tool .svg-ico svg{
+  width:15px !important;
+  height:15px !important;
+}
+.float-tool b{font-size:10px !important; font-weight:700 !important}
+
+/* Bottom controls: clear groups, good breathing room */
+.controls{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:12px !important;
+  min-height:52px !important;
+  padding:8px 12px !important;
+}
+.control-cluster{
+  display:flex !important;
+  align-items:center !important;
+  gap:8px !important;
+}
+.ctrl-btn{
+  width:36px !important;
+  height:36px !important;
+  min-width:36px !important;
+  min-height:36px !important;
+  border-radius:12px !important;
+  flex-shrink:0 !important;
+}
+.mini{
+  min-width:48px !important;
+  height:36px !important;
+  padding:0 10px !important;
+  border-radius:12px !important;
+  gap:5px !important;
+}
+.volume-wrap{
+  display:flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  padding:0 4px !important;
+}
+.volume-wrap input[type=range]{
+  width:56px !important;
+  height:4px !important;
+}
+
+/* Player head actions: consistent */
+.player-actions{
+  display:flex !important;
+  gap:4px !important;
+}
+.player-actions button{
+  width:32px !important;
+  height:32px !important;
+  min-width:32px !important;
+  border-radius:10px !important;
+}
+.player-actions .svg-ico,
+.player-actions .svg-ico svg,
+.player-actions img{
+  width:16px !important;
+  height:16px !important;
+}
+
+/* Timeline breathing room */
+.timeline{
+  height:36px !important;
+  padding:0 12px !important;
+  gap:8px !important;
+}
+
+/* Responsive keep consistency */
+@media (max-width: 420px){
+  .transport{gap:7px !important; padding:6px 8px !important}
+  .round-control{width:38px !important; height:38px !important; min-width:38px !important}
+  .center-play{width:50px !important; height:50px !important; min-width:50px !important}
+  .round-control .svg-ico, .round-control .svg-ico svg{width:16px !important; height:16px !important}
+  .center-play .svg-ico, .center-play .svg-ico svg{width:20px !important; height:20px !important}
+  .floating-tools{gap:6px !important; padding:4px 6px !important}
+  .float-tool{min-width:32px !important; height:30px !important}
+  .controls{gap:8px !important; padding:6px 8px !important}
+  .ctrl-btn{width:34px !important; height:34px !important}
+  .mini{min-width:44px !important; height:34px !important}
+  .volume-wrap input{width:44px !important}
+}
+@media (max-width: 360px){
+  .transport{gap:5px !important}
+  .round-control{width:34px !important; height:34px !important; min-width:34px !important}
+  .center-play{width:46px !important; height:46px !important; min-width:46px !important}
+  .controls{gap:6px !important}
+  .ctrl-btn{width:32px !important; height:32px !important}
+}
+
+/* Extra space for stacked transport + tools */
+.video-wrap{
+  height: 200px !important;
+  min-height: 180px !important;
+}
+@media (max-width: 420px){
+  .video-wrap{ height: 190px !important; }
+}
+@media (max-width: 360px){
+  .video-wrap{ height: 175px !important; }
+}
+
+/* ========== REFINE TO MATCH CLEAN REFERENCE (sizes + spacing) ========== */
+/* Cleaner visual area with soft waveform feel */
+.visual{
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 55%, color-mix(in srgb, var(--accent) 12%, transparent) 0%, transparent 70%),
+    radial-gradient(ellipse at center, #0a0508 0%, #030203 50%, #000 100%) !important;
+  padding: 18px 12px 16px !important;
+  gap: 16px !important;
+}
+
+/* Transport: proportions closer to the clean reference */
+.transport{
+  gap: 12px !important;
+  padding: 10px 14px !important;
+  border-radius: 999px !important;
+  background: rgba(0,0,0,.35) !important;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4), inset 0 1px rgba(255,255,255,.04) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+.round-control{
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 45%, rgba(255,255,255,.15)) !important;
+  background: rgba(8,8,10,.65) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.35) !important;
+}
+.round-control.seek-control{
+  width: 44px !important;
+  height: 44px !important;
+}
+.center-play{
+  width: 62px !important;
+  height: 62px !important;
+  min-width: 62px !important;
+  min-height: 62px !important;
+  border-width: 2px !important;
+  border-color: color-mix(in srgb, var(--accent) 80%, #fff) !important;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 18%, #111), rgba(0,0,0,.75)) !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.45), 0 0 18px color-mix(in srgb, var(--accent) 25%, transparent) !important;
+}
+
+/* Icon sizes matching the clean reference feel */
+.round-control .svg-ico,
+.round-control .svg-ico svg{
+  width: 20px !important;
+  height: 20px !important;
+}
+.center-play .svg-ico,
+.center-play .svg-ico svg{
+  width: 26px !important;
+  height: 26px !important;
+}
+
+/* Floating tools: smaller + less intrusive (or can be hidden later) */
+.floating-tools{
+  gap: 8px !important;
+  padding: 4px 6px !important;
+  background: rgba(0,0,0,.5) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  align-self: center !important; /* center under transport like clean designs */
+  margin: 0 !important;
+}
+.float-tool{
+  min-width: 34px !important;
+  height: 30px !important;
+  font-size: 10px !important;
+}
+
+/* Bottom controls: more breathing room like reference */
+.controls{
+  min-height: 54px !important;
+  padding: 10px 14px !important;
+  gap: 10px !important;
+  justify-content: space-between !important;
+}
+.control-cluster{
+  gap: 10px !important;
+}
+.ctrl-btn{
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  min-height: 38px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  background: rgba(255,255,255,.03) !important;
+}
+.ctrl-btn .svg-ico,
+.ctrl-btn .svg-ico svg,
+.mini .svg-ico,
+.mini .svg-ico svg{
+  width: 18px !important;
+  height: 18px !important;
+}
+.mini{
+  min-width: 46px !important;
+  height: 38px !important;
+  padding: 0 12px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  background: rgba(255,255,255,.03) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+.volume-wrap{
+  gap: 8px !important;
+}
+.volume-wrap input[type=range]{
+  width: 70px !important;
+  height: 3px !important;
+}
+
+/* Timeline cleaner */
+.timeline{
+  height: 38px !important;
+  padding: 0 14px !important;
+  gap: 10px !important;
+  font-size: 11px !important;
+}
+.timeline input[type=range]{
+  height: 3px !important;
+}
+
+/* Player head icons a bit smaller & cleaner */
+.player-actions button{
+  width: 34px !important;
+  height: 34px !important;
+}
+.player-actions .svg-ico,
+.player-actions .svg-ico svg,
+.player-actions img{
+  width: 17px !important;
+  height: 17px !important;
+}
+
+/* Video height for comfortable proportions */
+.video-wrap{
+  height: 210px !important;
+  min-height: 190px !important;
+}
+
+@media (max-width: 400px){
+  .transport{ gap: 9px !important; padding: 8px 10px !important; }
+  .round-control{ width: 40px !important; height: 40px !important; min-width: 40px !important; }
+  .center-play{ width: 56px !important; height: 56px !important; min-width: 56px !important; }
+  .round-control .svg-ico, .round-control .svg-ico svg{ width: 18px !important; height: 18px !important; }
+  .center-play .svg-ico, .center-play .svg-ico svg{ width: 24px !important; height: 24px !important; }
+  .controls{ padding: 8px 10px !important; gap: 8px !important; }
+  .ctrl-btn{ width: 36px !important; height: 36px !important; }
+  .mini{ min-width: 42px !important; height: 36px !important; }
+  .volume-wrap input{ width: 55px !important; }
+  .video-wrap{ height: 195px !important; }
+}
+
+/* ========== FLAT + SMALLER (match clean reference) ========== */
+/* Reduce glow & heavy shadows → flatter look */
+.transport{
+  gap: 14px !important;
+  padding: 8px 12px !important;
+  background: rgba(0,0,0,.28) !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  box-shadow: none !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.round-control{
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  min-height: 38px !important;
+  border: 1.5px solid rgba(255,255,255,.22) !important;
+  background: rgba(0,0,0,.45) !important;
+  box-shadow: none !important;
+}
+.round-control.seek-control{
+  width: 38px !important;
+  height: 38px !important;
+}
+.center-play{
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  min-height: 52px !important;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 70%, #fff) !important;
+  background: rgba(0,0,0,.55) !important;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 18%, transparent) !important;
+}
+
+/* Smaller icons */
+.round-control .svg-ico,
+.round-control .svg-ico svg{
+  width: 17px !important;
+  height: 17px !important;
+}
+.center-play .svg-ico,
+.center-play .svg-ico svg{
+  width: 22px !important;
+  height: 22px !important;
+}
+
+/* Floating tools flatter + smaller */
+.floating-tools{
+  gap: 8px !important;
+  padding: 3px 5px !important;
+  background: rgba(0,0,0,.4) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  box-shadow: none !important;
+}
+.float-tool{
+  min-width: 30px !important;
+  height: 28px !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  background: rgba(0,0,0,.5) !important;
+  box-shadow: none !important;
+  font-size: 9px !important;
+}
+.float-tool .svg-ico,
+.float-tool .svg-ico svg{
+  width: 13px !important;
+  height: 13px !important;
+}
+
+/* Bottom controls flatter + smaller */
+.controls{
+  min-height: 48px !important;
+  padding: 8px 12px !important;
+  gap: 12px !important;
+  background: transparent !important;
+  border-top: 1px solid rgba(255,255,255,.06) !important;
+}
+.ctrl-btn{
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  background: rgba(255,255,255,.03) !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+}
+.ctrl-btn .svg-ico,
+.ctrl-btn .svg-ico svg,
+.mini .svg-ico,
+.mini .svg-ico svg{
+  width: 16px !important;
+  height: 16px !important;
+}
+.mini{
+  min-width: 42px !important;
+  height: 34px !important;
+  padding: 0 10px !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  background: rgba(255,255,255,.03) !important;
+  box-shadow: none !important;
+  font-size: 11px !important;
+  border-radius: 10px !important;
+}
+.volume-wrap input[type=range]{
+  width: 64px !important;
+  height: 3px !important;
+}
+
+/* Timeline flatter */
+.timeline{
+  height: 34px !important;
+  padding: 0 12px !important;
+  gap: 10px !important;
+  font-size: 11px !important;
+  background: transparent !important;
+  border: none !important;
+}
+.timeline input[type=range]{
+  height: 3px !important;
+}
+.timeline input::-webkit-slider-thumb{
+  width: 11px !important;
+  height: 11px !important;
+  border: 2px solid #fff !important;
+  box-shadow: 0 0 6px var(--glow) !important;
+}
+
+/* Player head actions flatter */
+.player-actions button{
+  width: 30px !important;
+  height: 30px !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  background: rgba(255,255,255,.03) !important;
+  box-shadow: none !important;
+}
+.player-actions .svg-ico,
+.player-actions .svg-ico svg,
+.player-actions img{
+  width: 15px !important;
+  height: 15px !important;
+}
+
+/* Soft visual background (less heavy) */
+.visual{
+  background:
+    radial-gradient(ellipse 70% 45% at 50% 50%, color-mix(in srgb, var(--accent) 9%, transparent) 0%, transparent 65%),
+    #000 !important;
+  padding: 16px 10px 14px !important;
+  gap: 14px !important;
+}
+
+.video-wrap{
+  height: 195px !important;
+  min-height: 175px !important;
+}
+
+/* Reduce heavy 3D filter on control icons */
+.icon-tint,
+.round-control img,
+.center-play img,
+.ctrl-btn img{
+  filter: none !important;
+}
+
+@media (max-width: 400px){
+  .transport{ gap: 11px !important; padding: 7px 9px !important; }
+  .round-control{ width: 35px !important; height: 35px !important; min-width: 35px !important; }
+  .center-play{ width: 48px !important; height: 48px !important; min-width: 48px !important; }
+  .round-control .svg-ico, .round-control .svg-ico svg{ width: 15px !important; height: 15px !important; }
+  .center-play .svg-ico, .center-play .svg-ico svg{ width: 20px !important; height: 20px !important; }
+  .ctrl-btn{ width: 32px !important; height: 32px !important; }
+  .mini{ min-width: 40px !important; height: 32px !important; }
+  .volume-wrap input{ width: 52px !important; }
+  .video-wrap{ height: 180px !important; }
+}
+
+/* ========== CLEAN SPACIOUS LAYOUT (match reference) ========== */
+.video-wrap{
+  height: 220px !important;
+  min-height: 200px !important;
+  position: relative !important;
+}
+.visual{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-end !important;
+  padding: 0 0 12px !important;
+  background: transparent !important;
+  gap: 0 !important;
+}
+.visual:before, .visual:after{ display: none !important; }
+
+/* Main transport row - spacious like reference */
+.transport{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  padding: 0 14px !important;
+  gap: 8px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+.transport-center{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 18px !important;
+  flex: 1 !important;
+}
+.ctrl-side, .ctrl-side-right .ctrl-side{
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 10px !important;
+  border: none !important;
+  background: rgba(0,0,0,.35) !important;
+  color: #eee !important;
+}
+.ctrl-side-right{
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+.ctrl-side .svg-ico, .ctrl-side .svg-ico svg{
+  width: 18px !important;
+  height: 18px !important;
+}
+
+/* Round controls - clean flat */
+.round-control{
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 50% !important;
+}
+.round-control .svg-ico, .round-control .svg-ico svg{
+  width: 22px !important;
+  height: 22px !important;
+  color: #f0f0f0 !important;
+}
+.center-play{
+  width: 56px !important;
+  height: 56px !important;
+  min-width: 56px !important;
+  min-height: 56px !important;
+  border: 2px solid var(--accent) !important;
+  background: rgba(0,0,0,.4) !important;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 30%, transparent) !important;
+}
+.center-play .svg-ico, .center-play .svg-ico svg{
+  width: 24px !important;
+  height: 24px !important;
+}
+
+/* Hide old floating tools */
+.floating-tools{ display: none !important; }
+
+/* Timeline - clean */
+.timeline{
+  height: 32px !important;
+  padding: 0 14px !important;
+  gap: 10px !important;
+  font-size: 11px !important;
+  color: #bbb !important;
+  background: transparent !important;
+  border: none !important;
+  display: grid !important;
+  grid-template-columns: auto 1fr auto auto !important;
+  align-items: center !important;
+}
+.timeline input[type=range]{
+  height: 3px !important;
+  background: linear-gradient(90deg, var(--accent) 0 var(--progress, 30%), #333 var(--progress, 30%) 100%) !important;
+}
+.timeline input::-webkit-slider-thumb{
+  width: 12px !important;
+  height: 12px !important;
+  background: var(--accent) !important;
+  border: 2px solid #fff !important;
+  box-shadow: 0 0 6px var(--glow) !important;
+}
+
+/* Secondary controls row - spacious */
+.controls{
+  min-height: 48px !important;
+  padding: 8px 12px 12px !important;
+  background: transparent !important;
+  border-top: 1px solid rgba(255,255,255,.06) !important;
+  display: block !important;
+}
+.control-row.secondary-row{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+.status-pill{
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 11px !important;
+  color: var(--accent2) !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+}
+.signal-dot{
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background: var(--accent) !important;
+  box-shadow: 0 0 6px var(--glow) !important;
+}
+.volume-wrap{
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex: 0 0 auto !important;
+}
+.volume-wrap .ctrl-btn, #volIcon{
+  width: 28px !important;
+  height: 28px !important;
+  background: transparent !important;
+  border: none !important;
+}
+.volume-wrap .svg-ico, .volume-wrap .svg-ico svg{
+  width: 16px !important;
+  height: 16px !important;
+}
+.volume-wrap input[type=range]{
+  width: 70px !important;
+  height: 3px !important;
+}
+.mini, .mini.control-action{
+  min-width: 40px !important;
+  height: 30px !important;
+  padding: 0 10px !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  background: rgba(255,255,255,.04) !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #ddd !important;
+  box-shadow: none !important;
+  white-space: nowrap !important;
+}
+.mini.active, .mini-cc.active{
+  border-color: var(--accent) !important;
+  color: var(--accent2) !important;
+}
+.zoom-group{
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+.zoom-group .mini{
+  min-width: 28px !important;
+  width: 28px !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+}
+.zoom-val{
+  font-size: 11px !important;
+  color: #aaa !important;
+  min-width: 36px !important;
+  text-align: center !important;
+}
+
+/* Player head cleaner */
+.player-head{
+  height: 42px !important;
+  padding: 6px 12px !important;
+}
+.player-actions button{
+  width: 32px !important;
+  height: 32px !important;
+  background: rgba(255,255,255,.04) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 9px !important;
+  box-shadow: none !important;
+}
+.player-actions .svg-ico, .player-actions .svg-ico svg, .player-actions img{
+  width: 15px !important;
+  height: 15px !important;
+}
+
+/* Responsive */
+@media (max-width: 400px){
+  .transport{ padding: 0 10px !important; }
+  .transport-center{ gap: 14px !important; }
+  .round-control{ width: 36px !important; height: 36px !important; }
+  .center-play{ width: 50px !important; height: 50px !important; }
+  .center-play .svg-ico, .center-play .svg-ico svg{ width: 22px !important; height: 22px !important; }
+  .volume-wrap input{ width: 55px !important; }
+  .mini{ min-width: 36px !important; padding: 0 8px !important; font-size: 10px !important; }
+  .video-wrap{ height: 200px !important; }
+}
+
+/* Fine-tune secondary row spacing */
+.control-row.secondary-row{
+  gap: 6px !important;
+  padding: 0 2px !important;
+}
+.status-pill{ font-size: 10px !important; margin-right: 2px !important; }
+.volume-wrap input[type=range]{ width: 58px !important; }
+.mini, .mini.control-action{
+  min-width: 36px !important;
+  height: 28px !important;
+  padding: 0 8px !important;
+  font-size: 10px !important;
+}
+.zoom-group .mini{ min-width: 26px !important; width: 26px !important; }
+.zoom-val{ font-size: 10px !important; min-width: 32px !important; }
+
+/* Ensure transport icons are bright */
+.ctrl-side .svg-ico svg, .round-control .svg-ico svg{
+  fill: currentColor !important;
+  color: #f2f2f2 !important;
+}
+.center-play{
+  border-color: var(--accent) !important;
+}
+
+/* ========== v4.3.1 Player controls redesign ========== */
+.video-wrap{ position:relative; }
+.visual{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.35) 100%);
+}
+.visual > *{ pointer-events:auto; }
+
+/* Center play only — no transport row */
+.center-play-only{
+  width:72px; height:72px; border-radius:50%;
+  display:grid; place-items:center;
+  background:rgba(8,8,12,.55);
+  border:2px solid var(--accent);
+  box-shadow:0 0 24px var(--glow), inset 0 0 12px rgba(255,255,255,.06);
+  color:var(--accent);
+  opacity:.92;
+  transition: transform .15s ease, opacity .2s;
+  z-index:3;
+}
+.center-play-only:active{ transform:scale(.92); }
+.center-play-only .svg-ico{ width:28px; height:28px; color:var(--accent)!important; }
+.center-play-only.playing{ opacity:.0; } /* hide while playing until hover/tap area */
+.video-wrap:hover .center-play-only.playing,
+.video-wrap:active .center-play-only.playing{ opacity:.75; }
+
+/* Side FABs */
+.side-fab{
+  width:44px; height:44px; border-radius:14px;
+  display:grid; place-items:center;
+  background:rgba(6,7,10,.78);
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 8px 20px rgba(0,0,0,.45), 0 0 12px var(--glow);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  color:var(--accent);
+}
+.side-fab .svg-ico{ width:20px; height:20px; color:var(--accent)!important; }
+.side-fab.active{
+  border-color:var(--accent);
+  box-shadow:0 0 16px var(--glow);
+  background:rgba(225,29,72,.18);
+}
+.side-left{
+  position:absolute; left:10px; top:50%; transform:translateY(-50%);
+  z-index:4;
+}
+.side-stack.side-right{
+  position:absolute; right:10px; top:50%; transform:translateY(-50%);
+  display:flex; flex-direction:column; gap:10px;
+  z-index:4;
+}
+
+/* Top actions: settings + CC + cast */
+.player-actions button{
+  width:30px; height:30px; display:grid; place-items:center;
+  border-radius:10px; color:var(--accent);
+}
+.player-actions #ccTopBtn{
+  font-size:10px; font-weight:700; letter-spacing:.3px;
+  border:1px solid rgba(255,255,255,.12);
+  width:auto; min-width:30px; padding:0 7px;
+}
+
+/* Bottom bar simplified */
+.controls .bottom-bar{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; padding:6px 10px 10px;
+}
+.controls .bottom-bar .ctrl-btn{
+  width:42px; height:42px; min-width:42px;
+  display:grid; place-items:center;
+  border-radius:12px;
+  background:rgba(10,11,14,.7);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--accent);
+}
+.controls .bottom-bar .ctrl-btn .svg-ico,
+.controls .bottom-bar .ctrl-btn img{ width:22px; height:22px; }
+.controls .bottom-bar .mini{
+  min-width:48px; height:32px; border-radius:10px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(8,9,12,.65);
+}
+
+/* Hide legacy transport if any leftover */
+.transport, .floating-tools, .volume-wrap input[type=range]#volume,
+.zoom-group, #qualityBtn, #infoBtn, #audioBtn{ display:none !important; }
+
+/* Audio only mode */
+video.audio-only-mode{
+  opacity:0 !important;
+}
+.video-wrap:has(video.audio-only-mode)::after{
+  content:'♪ Audio only';
+  position:absolute; inset:0; display:grid; place-items:center;
+  color:var(--accent2); font-size:14px; letter-spacing:.5px;
+  text-shadow:0 0 12px var(--glow);
+  pointer-events:none;
+}
+
+/* Force landscape layout helper */
+.player.force-landscape .video-wrap{
+  height:min(56vw, 280px);
+}
+@media (orientation: portrait){
+  .player.force-landscape{
+    /* visual hint only when lock API unavailable */
+  }
+}
+
+/* Locked controls */
+.player.controls-locked .side-fab:not(#lockBtn),
+.player.controls-locked .center-play-only,
+.player.controls-locked .controls,
+.player.controls-locked .timeline input,
+.player.controls-locked .player-actions{
+  opacity:.25; pointer-events:none;
+}
+.player.controls-locked #lockBtn{ opacity:1; pointer-events:auto; }
+
+/* Gesture HUD */
+.gesture-hud{
+  position:absolute; left:50%; top:18%; transform:translateX(-50%);
+  padding:8px 14px; border-radius:12px;
+  background:rgba(0,0,0,.72); border:1px solid rgba(255,255,255,.12);
+  color:#fff; font-size:13px; font-weight:600;
+  opacity:0; pointer-events:none; transition:opacity .15s;
+  z-index:20; backdrop-filter:blur(8px);
+}
+.gesture-hud.show{ opacity:1; }
+
+/* Night polish */
+.player{
+  background:#020203;
+  box-shadow:0 16px 40px rgba(0,0,0,.55), 0 0 28px var(--glow);
+}
+.timeline{
+  background:linear-gradient(180deg, rgba(0,0,0,.2), transparent);
+}
+.timeline input[type=range]{
+  accent-color:var(--accent);
+}
+
+/* ===== FORCE new player overlay layout (beats old !important rules) ===== */
+.player .video-wrap{
+  position: relative !important;
+  height: min(52vw, 220px) !important;
+  min-height: 180px !important;
+  background: #000 !important;
+  overflow: hidden !important;
+}
+.player .video-wrap video{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+.player .visual{
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  flex-direction: unset !important;
+  align-items: unset !important;
+  justify-content: unset !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  background: transparent !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+.player .visual > *{
+  pointer-events: auto !important;
+}
+.player .center-play-only{
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  border-radius: 50% !important;
+  display: grid !important;
+  place-items: center !important;
+  background: rgba(0,0,0,.55) !important;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 5 !important;
+  margin: 0 !important;
+}
+.player .center-play-only:active{
+  transform: translate(-50%, -50%) scale(.92) !important;
+}
+.player .center-play-only .svg-ico,
+.player .center-play-only .svg-ico svg{
+  width: 18px !important;
+  height: 18px !important;
+  color: var(--accent) !important;
+  fill: currentColor !important;
+}
+.player .side-fab.side-left,
+.player .side-left{
+  position: absolute !important;
+  left: 8px !important;
+  bottom: 8px !important;
+  top: auto !important;
+  transform: none !important;
+  z-index: 6 !important;
+  margin: 0 !important;
+}
+.player .side-stack.side-right{
+  position: absolute !important;
+  right: 8px !important;
+  bottom: 8px !important;
+  top: auto !important;
+  transform: none !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 4px !important;
+  z-index: 6 !important;
+  margin: 0 !important;
+  align-items: center !important;
+}
+.player .side-fab{
+  width: 26px !important;
+  height: 26px !important;
+  min-width: 26px !important;
+  min-height: 26px !important;
+  border-radius: 8px !important;
+  display: grid !important;
+  place-items: center !important;
+  background: rgba(6,7,10,.82) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.4), 0 0 8px var(--glow) !important;
+  color: var(--accent) !important;
+  padding: 0 !important;
+}
+.player .side-fab .svg-ico,
+.player .side-fab .svg-ico svg,
+.player .side-fab svg{
+  width: 14px !important;
+  height: 14px !important;
+  color: var(--accent) !important;
+  fill: currentColor !important;
+}
+.player .side-fab.active{
+  background: rgba(225,29,72,.22) !important;
+  border-color: var(--accent) !important;
+}
+.player .player-actions{
+  display: flex !important;
+  gap: 4px !important;
+  align-items: center !important;
+}
+.player .player-actions button{
+  width: 32px !important;
+  height: 32px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 10px !important;
+  color: var(--accent) !important;
+  background: rgba(0,0,0,.35) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+}
+.player .player-actions #ccTopBtn{
+  width: auto !important;
+  min-width: 32px !important;
+  padding: 0 8px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: var(--accent) !important;
+}
+.player .controls .bottom-bar{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 8px 12px 12px !important;
+  width: 100% !important;
+}
+.player .controls .bottom-bar .ctrl-btn{
+  width: 44px !important;
+  height: 44px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 12px !important;
+  background: rgba(10,11,14,.75) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  color: var(--accent) !important;
+}
+.player .controls .bottom-bar .mini{
+  min-width: 52px !important;
+  height: 34px !important;
+  border-radius: 10px !important;
+}
+/* kill any leftover transport / 4k / music tools */
+.player .transport,
+.player .floating-tools,
+.player .volume-wrap,
+.player #qualityBtn,
+.player #infoBtn,
+.player #audioBtn,
+.player #zoomOut,
+.player #zoomIn,
+.player .zoom-group{ display: none !important; }
+
+/* ===== v4.3.3 polish ===== */
+.player .video-wrap{
+  height: 240px !important;
+  min-height: 240px !important;
+}
+@media(min-width:400px){
+  .player .video-wrap{ height: 260px !important; min-height: 260px !important; }
+}
+
+/* Level HUD for volume / brightness */
+.level-hud{
+  position:absolute; left:50%; top:18%; transform:translateX(-50%);
+  min-width:140px; padding:10px 14px; border-radius:14px;
+  background:rgba(0,0,0,.78); border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  z-index:30; opacity:0; pointer-events:none; transition:opacity .15s;
+  box-shadow:0 10px 28px rgba(0,0,0,.5), 0 0 16px var(--glow);
+}
+.level-hud.show{ opacity:1; }
+.level-hud .level-label{
+  font-size:10px; letter-spacing:.8px; color:#c8c8cc; text-align:center; margin-bottom:6px; font-weight:700;
+}
+.level-hud .level-track{
+  height:6px; border-radius:99px; background:rgba(255,255,255,.12); overflow:hidden;
+}
+.level-hud .level-track i{
+  display:block; height:100%; border-radius:99px;
+  background:linear-gradient(90deg, var(--accent), var(--accent2, #fb7185));
+  box-shadow:0 0 10px var(--glow);
+  transition:width .08s linear;
+}
+.level-hud .level-pct{
+  margin-top:6px; text-align:center; font-size:13px; font-weight:800; color:#fff;
+}
+
+/* Bottom bar more items */
+.player .controls .bottom-bar{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:6px !important;
+  padding:8px 8px 12px !important;
+  flex-wrap:nowrap !important;
+}
+.player .controls .bottom-bar .ctrl-btn,
+.player .controls .bottom-bar .mini{
+  flex:0 0 auto;
+}
+.player .controls .bottom-bar .ctrl-btn.accent-tint,
+.player .controls .bottom-bar .ctrl-btn .svg-ico,
+.player #fullBtn,
+.player #fullBtn .svg-ico,
+.player #fullBtn svg{
+  color: var(--accent) !important;
+  fill: currentColor !important;
+}
+.player #fullBtn img.icon-tint,
+.player #fullBtn img{
+  filter: none !important;
+  /* tint via CSS if png - prefer svg */
+}
+
+/* Connection chart prettier */
+.connection-card .chart{
+  height:64px !important;
+  margin-top:6px;
+  border-radius:10px;
+  background:linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+  padding:4px 2px 0;
+  border:1px solid rgba(255,255,255,.04);
+}
+.connection-card .chart svg{
+  width:100%; height:100%;
+  filter: drop-shadow(0 0 6px var(--glow));
+}
+#connectionChart{
+  stroke: var(--accent) !important;
+  stroke-width: 2.4 !important;
+  fill: none !important;
+}
+#connectionArea{
+  fill: url(#netGrad);
+  opacity: .9;
+}
+.chart-meta{
+  font-size:8px !important;
+  color:#8b8e96 !important;
+  margin-top:4px;
+}
+
+/* Theme-colored player action icons */
+.player-actions button,
+.player-actions button .svg-ico,
+.player-actions button svg,
+.player .ctrl-btn .svg-ico,
+.player .ctrl-btn svg,
+.player .side-fab,
+.player .side-fab svg{
+  color: var(--accent) !important;
+  fill: currentColor !important;
+}
+
+/* Fullscreen landscape cinematic */
+.player:fullscreen,
+.player:-webkit-full-screen{
+  width:100vw !important;
+  height:100vh !important;
+  background:#000 !important;
+  border-radius:0 !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+.player:fullscreen .video-wrap,
+.player:-webkit-full-screen .video-wrap{
+  flex:1 !important;
+  height:auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+}
+.player:fullscreen video,
+.player:-webkit-full-screen video{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+}
+
+/* ========== v4.3.5 Unified premium dock ========== */
+.player .controls{
+  padding: 0 10px 12px !important;
+  background: transparent !important;
+}
+.player .dock-bar{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  width: 100% !important;
+  padding: 8px 10px !important;
+  border-radius: 18px !important;
+  background: linear-gradient(145deg, rgba(18,20,28,.92), rgba(6,7,12,.88)) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  box-shadow:
+    0 10px 28px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 0 18px color-mix(in srgb, var(--accent) 18%, transparent) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+.player .dock-btn{
+  flex: 1 1 0 !important;
+  height: 44px !important;
+  min-width: 0 !important;
+  max-width: 72px !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 14px !important;
+  background: rgba(255,255,255,.03) !important;
+  border: 1px solid rgba(255,255,255,.06) !important;
+  color: var(--accent) !important;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.2) !important;
+  transition: transform .12s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease !important;
+  padding: 0 !important;
+}
+.player .dock-btn:active{
+  transform: scale(.94) !important;
+  background: color-mix(in srgb, var(--accent) 16%, rgba(0,0,0,.4)) !important;
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent) !important;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 35%, transparent) !important;
+}
+.player .dock-btn .svg-ico,
+.player .dock-btn .svg-ico svg,
+.player .dock-btn svg{
+  width: 22px !important;
+  height: 22px !important;
+  color: var(--accent) !important;
+  fill: currentColor !important;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--accent) 40%, transparent)) !important;
+}
+.player .dock-btn.dock-label span{
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: .3px !important;
+  color: var(--accent) !important;
+  text-shadow: 0 0 8px color-mix(in srgb, var(--accent) 35%, transparent) !important;
+}
+
+/* Top head buttons unified */
+.player .player-actions{
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+.player .head-btn{
+  width: 34px !important;
+  height: 34px !important;
+  display: grid !important;
+  place-items: center !important;
+  border-radius: 11px !important;
+  background: rgba(0,0,0,.35) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  color: var(--accent) !important;
+  padding: 0 !important;
+  box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 12%, transparent) !important;
+}
+.player .head-btn .svg-ico,
+.player .head-btn svg{
+  width: 18px !important;
+  height: 18px !important;
+  color: var(--accent) !important;
+  fill: currentColor !important;
+}
+.player .head-btn.head-cc{
+  width: auto !important;
+  min-width: 34px !important;
+  padding: 0 9px !important;
+}
+.player .head-btn.head-cc span{
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: var(--accent) !important;
+  letter-spacing: .4px !important;
+}
+.player .head-btn:active{
+  background: color-mix(in srgb, var(--accent) 18%, rgba(0,0,0,.5)) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Side FABs match dock language */
+.player .side-fab{
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 15px !important;
+  background: linear-gradient(145deg, rgba(18,20,28,.9), rgba(6,7,12,.85)) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,.5), 0 0 14px color-mix(in srgb, var(--accent) 22%, transparent) !important;
+}
+.player .side-fab svg,
+.player .side-fab .svg-ico{
+  color: var(--accent) !important;
+  fill: currentColor !important;
+}
+
+/* Center play refined */
+.player #centerPlay,
+.player .center-play-only{
+  width: 74px !important;
+  height: 74px !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.12), rgba(8,8,12,.72) 55%) !important;
+  border: 2px solid var(--accent) !important;
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent),
+    0 12px 30px rgba(0,0,0,.55),
+    0 0 28px color-mix(in srgb, var(--accent) 40%, transparent) !important;
+}
+.player #centerPlay .svg-ico,
+.player #centerPlay svg{
+  width: 30px !important;
+  height: 30px !important;
+  color: var(--accent) !important;
+  fill: currentColor !important;
+  filter: drop-shadow(0 0 8px var(--accent)) !important;
+}
+
+/* Taller stage */
+.player .video-wrap{
+  height: 250px !important;
+  min-height: 250px !important;
+}
+
+/* Hide legacy mismatched classes if any remain */
+.player .bottom-bar .mini,
+.player .control-row.secondary-row{
+  /* no-op legacy */
+}
+
+/* ===== v4.3.6: slim player + FS chrome + smaller dock ===== */
+
+/* Slimmer player: more width for video, less chrome height */
+.player .video-wrap{
+  height: min(48vw, 200px) !important;
+  min-height: 168px !important;
+  max-height: 220px !important;
+}
+.player .player-head{
+  height: 36px !important;
+  padding: 4px 8px !important;
+}
+.player .timeline{
+  height: 28px !important;
+  padding: 0 8px !important;
+  font-size: 10px !important;
+}
+.player .controls{
+  padding: 0 8px 8px !important;
+}
+
+/* Smaller cohesive dock */
+.player .dock-bar{
+  gap: 5px !important;
+  padding: 5px 6px !important;
+  border-radius: 14px !important;
+}
+.player .dock-btn{
+  height: 36px !important;
+  max-width: 56px !important;
+  border-radius: 11px !important;
+}
+.player .dock-btn .svg-ico,
+.player .dock-btn .svg-ico svg,
+.player .dock-btn svg{
+  width: 18px !important;
+  height: 18px !important;
+}
+.player .dock-btn.dock-label span{
+  font-size: 10px !important;
+  font-weight: 700 !important;
+}
+
+/* Smaller side fabs */
+.player .side-fab{
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 12px !important;
+}
+.player .side-fab svg,
+.player .side-fab .svg-ico{
+  width: 17px !important;
+  height: 17px !important;
+}
+.player #centerPlay,
+.player .center-play-only{
+  width: 58px !important;
+  height: 58px !important;
+}
+.player #centerPlay .svg-ico,
+.player #centerPlay svg{
+  width: 24px !important;
+  height: 24px !important;
+}
+
+/* Top play button: prevent text duplicate layout */
+.play-btn.glass-play{
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+}
+.play-btn .play-ico{
+  display: grid !important;
+  place-items: center !important;
+  line-height: 0 !important;
+}
+.play-btn .play-ico .svg-ico{
+  width: 14px !important;
+  height: 14px !important;
+}
+.play-btn .play-label{
+  font-weight: 800 !important;
+  letter-spacing: .3px !important;
+}
+
+/* ===== TRUE FULLSCREEN ===== */
+.player.is-fullscreen,
+.player:fullscreen,
+.player:-webkit-full-screen{
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  background: #000 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+}
+.player.is-fullscreen .video-wrap,
+.player:fullscreen .video-wrap,
+.player:-webkit-full-screen .video-wrap{
+  flex: 1 1 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  width: 100% !important;
+}
+.player.is-fullscreen video,
+.player:fullscreen video,
+.player:-webkit-full-screen video{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Hide chrome in FS until tap */
+.player.is-fullscreen.fs-chrome-hidden .player-head,
+.player.is-fullscreen.fs-chrome-hidden .controls,
+.player.is-fullscreen.fs-chrome-hidden .timeline,
+.player.is-fullscreen.fs-chrome-hidden .side-fab,
+.player.is-fullscreen.fs-chrome-hidden .side-stack,
+.player.is-fullscreen.fs-chrome-hidden #centerPlay{
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity .25s ease !important;
+}
+.player.is-fullscreen.fs-chrome-show .player-head,
+.player.is-fullscreen.fs-chrome-show .controls,
+.player.is-fullscreen.fs-chrome-show .timeline,
+.player.is-fullscreen.fs-chrome-show .side-fab,
+.player.is-fullscreen.fs-chrome-show .side-stack,
+.player.is-fullscreen.fs-chrome-show #centerPlay{
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transition: opacity .2s ease !important;
+}
+.player.is-fullscreen .player-head,
+.player.is-fullscreen .controls,
+.player.is-fullscreen .timeline{
+  background: linear-gradient(180deg, rgba(0,0,0,.65), transparent) !important;
+}
+.player.is-fullscreen .controls{
+  background: linear-gradient(0deg, rgba(0,0,0,.75), transparent) !important;
+  position: absolute !important;
+  left: 0; right: 0; bottom: 0;
+  z-index: 20;
+  padding: 12px 12px 20px !important;
+}
+.player.is-fullscreen .timeline{
+  position: absolute !important;
+  left: 0; right: 0; bottom: 64px;
+  z-index: 20;
+  background: transparent !important;
+}
+.player.is-fullscreen .player-head{
+  position: absolute !important;
+  left: 0; right: 0; top: 0;
+  z-index: 20;
+  padding: 10px 12px !important;
+  height: auto !important;
+}
+.player.is-fullscreen .info-grid{ display: none !important; }
+
+/* When page is not home, no change */
+body.player-fs .bottom-nav,
+body.player-fs .topbar,
+body.player-fs .url-row{
+  display: none !important;
+}
+
+/* force smaller dock - final override */
+#player .dock-bar .dock-btn{
+  height: 34px !important;
+  min-height: 34px !important;
+  max-height: 34px !important;
+  max-width: 52px !important;
+  border-radius: 10px !important;
+}
+#player .dock-bar{
+  padding: 4px 5px !important;
+  gap: 4px !important;
+}
+#player .dock-bar .dock-btn .svg-ico,
+#player .dock-bar .dock-btn svg{
+  width: 16px !important;
+  height: 16px !important;
+}
+#player .dock-bar .dock-label span{ font-size: 9.5px !important; }
+#player .video-wrap{
+  height: min(46vw, 190px) !important;
+  min-height: 160px !important;
+  max-height: 200px !important;
+}
+
+/* ===== v4.3.7 TRUE FULLSCREEN - video fills entire screen ===== */
+.player.is-fullscreen,
+.player:fullscreen,
+.player:-webkit-full-screen,
+.player.fs-css-only{
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #000 !important;
+  z-index: 2147483000 !important;
+  display: block !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+
+/* Video area fills ALL of the screen */
+.player.is-fullscreen .video-wrap,
+.player:fullscreen .video-wrap,
+.player:-webkit-full-screen .video-wrap,
+.player.fs-css-only .video-wrap{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #000 !important;
+}
+
+.player.is-fullscreen video,
+.player:fullscreen video,
+.player:-webkit-full-screen video,
+.player.fs-css-only video{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important; /* keep aspect, fill as much as possible */
+  background: #000 !important;
+}
+
+/* Optional: when FIT is FILL/cover mode, edge-to-edge crop */
+.player.is-fullscreen video[style*="cover"],
+.player.is-fullscreen.fit-cover video{
+  object-fit: cover !important;
+}
+
+/* Hide chrome by default in FS */
+.player.is-fullscreen.fs-chrome-hidden .player-head,
+.player.is-fullscreen.fs-chrome-hidden .controls,
+.player.is-fullscreen.fs-chrome-hidden .timeline,
+.player.is-fullscreen.fs-chrome-hidden .side-fab,
+.player.is-fullscreen.fs-chrome-hidden .side-stack,
+.player.is-fullscreen.fs-chrome-hidden .side-left,
+.player.is-fullscreen.fs-chrome-hidden #centerPlay,
+.player.is-fullscreen.fs-chrome-hidden .visual > button,
+.player.is-fullscreen.fs-chrome-hidden .dock-bar{
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity .2s ease, visibility .2s ease !important;
+}
+
+/* Show chrome only when tapped */
+.player.is-fullscreen.fs-chrome-show .player-head,
+.player.is-fullscreen.fs-chrome-show .controls,
+.player.is-fullscreen.fs-chrome-show .timeline,
+.player.is-fullscreen.fs-chrome-show .side-fab,
+.player.is-fullscreen.fs-chrome-show .side-stack,
+.player.is-fullscreen.fs-chrome-show .side-left,
+.player.is-fullscreen.fs-chrome-show #centerPlay,
+.player.is-fullscreen.fs-chrome-show .visual > button,
+.player.is-fullscreen.fs-chrome-show .dock-bar{
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Overlay chrome positioned on top of full video */
+.player.is-fullscreen .player-head{
+  position: absolute !important;
+  top: 0; left: 0; right: 0;
+  z-index: 30;
+  background: linear-gradient(180deg, rgba(0,0,0,.7), transparent) !important;
+  padding: 12px 14px !important;
+  height: auto !important;
+}
+.player.is-fullscreen .timeline{
+  position: absolute !important;
+  left: 0; right: 0; bottom: 58px;
+  z-index: 30;
+  background: transparent !important;
+  padding: 0 14px !important;
+}
+.player.is-fullscreen .controls{
+  position: absolute !important;
+  left: 0; right: 0; bottom: 0;
+  z-index: 30;
+  background: linear-gradient(0deg, rgba(0,0,0,.75), transparent) !important;
+  padding: 8px 12px calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+}
+.player.is-fullscreen .info-grid,
+.player.is-fullscreen ~ .info-grid,
+body.player-fs .info-grid,
+body.player-fs .bottom-nav,
+body.player-fs .topbar,
+body.player-fs .url-row,
+body.player-fs #content > .page > .url-row{
+  display: none !important;
+}
+body.player-fs{
+  overflow: hidden !important;
+  background: #000 !important;
+}
+body.player-fs .app{
+  max-width: none !important;
+  padding: 0 !important;
+  background: #000 !important;
+}
+
+/* =====================================================
+   v4.3.7b FINAL FULLSCREEN OVERRIDES — highest priority
+   ===================================================== */
+html body .player.is-fullscreen,
+html body .player.fs-css-only,
+html body .player:fullscreen,
+html body .player:-webkit-full-screen{
+  position: fixed !important;
+  top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #000 !important;
+  z-index: 2147483646 !important;
+  overflow: hidden !important;
+  display: block !important;
+}
+
+html body .player.is-fullscreen .video-wrap,
+html body .player.fs-css-only .video-wrap,
+html body .player:fullscreen .video-wrap,
+html body .player:-webkit-full-screen .video-wrap{
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html body .player.is-fullscreen video,
+html body .player.fs-css-only video,
+html body .player:fullscreen video,
+html body .player:-webkit-full-screen video,
+html body .player.is-fullscreen #video,
+html body .player.fs-css-only #video{
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  background: #000 !important;
+}
+
+html body .player.is-fullscreen.fit-cover video,
+html body .player.fs-css-only.fit-cover video{
+  object-fit: cover !important;
+}
+
+/* Force chrome fully invisible (no partial opacity from transitions) */
+html body .player.is-fullscreen.fs-chrome-hidden .player-head,
+html body .player.is-fullscreen.fs-chrome-hidden .controls,
+html body .player.is-fullscreen.fs-chrome-hidden .timeline,
+html body .player.is-fullscreen.fs-chrome-hidden .dock-bar,
+html body .player.is-fullscreen.fs-chrome-hidden .side-fab,
+html body .player.is-fullscreen.fs-chrome-hidden .side-stack,
+html body .player.is-fullscreen.fs-chrome-hidden .side-left,
+html body .player.is-fullscreen.fs-chrome-hidden #centerPlay,
+html body .player.is-fullscreen.fs-chrome-hidden .visual,
+html body .player.fs-css-only.fs-chrome-hidden .player-head,
+html body .player.fs-css-only.fs-chrome-hidden .controls,
+html body .player.fs-css-only.fs-chrome-hidden .timeline,
+html body .player.fs-css-only.fs-chrome-hidden .dock-bar,
+html body .player.fs-css-only.fs-chrome-hidden .side-fab,
+html body .player.fs-css-only.fs-chrome-hidden .side-stack,
+html body .player.fs-css-only.fs-chrome-hidden .side-left,
+html body .player.fs-css-only.fs-chrome-hidden #centerPlay,
+html body .player.fs-css-only.fs-chrome-hidden .visual{
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+html body .player.is-fullscreen.fs-chrome-show .player-head,
+html body .player.is-fullscreen.fs-chrome-show .controls,
+html body .player.is-fullscreen.fs-chrome-show .timeline,
+html body .player.is-fullscreen.fs-chrome-show .dock-bar,
+html body .player.is-fullscreen.fs-chrome-show .side-fab,
+html body .player.is-fullscreen.fs-chrome-show .side-stack,
+html body .player.is-fullscreen.fs-chrome-show .side-left,
+html body .player.is-fullscreen.fs-chrome-show #centerPlay,
+html body .player.is-fullscreen.fs-chrome-show .visual{
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+html body .player.is-fullscreen .player-head,
+html body .player.fs-css-only .player-head{
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  z-index: 40 !important;
+  height: auto !important;
+}
+html body .player.is-fullscreen .controls,
+html body .player.fs-css-only .controls{
+  position: absolute !important;
+  left: 0 !important; right: 0 !important; bottom: 0 !important;
+  z-index: 40 !important;
+}
+html body .player.is-fullscreen .timeline,
+html body .player.fs-css-only .timeline{
+  position: absolute !important;
+  left: 0 !important; right: 0 !important; bottom: 56px !important;
+  z-index: 40 !important;
+}
+
+/* v4.4.1 player control polish */
+.player .dock-bar{gap:6px!important;padding:7px!important;border-radius:20px!important;background:linear-gradient(145deg,rgba(25,27,35,.96),rgba(5,6,10,.97))!important;border:1px solid rgba(255,255,255,.10)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 8px 18px rgba(0,0,0,.32)!important}
+.player .dock-btn{position:relative!important;flex:1 1 0!important;min-width:0!important;height:46px!important;border-radius:14px!important;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.018))!important;border:1px solid rgba(255,255,255,.095)!important;color:#e9e9ed!important;transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease!important}
+.player .dock-btn:hover{transform:translateY(-2px)!important;background:linear-gradient(145deg,rgba(255,48,66,.20),rgba(255,255,255,.045))!important;border-color:var(--accent2)!important;box-shadow:0 7px 16px rgba(0,0,0,.32),0 0 14px var(--glow)!important}
+.player .dock-btn:active{transform:translateY(1px) scale(.96)!important}
+.player .dock-btn .svg-ico,.player .dock-btn svg{width:21px!important;height:21px!important;color:var(--accent2)!important;fill:currentColor!important;filter:drop-shadow(0 0 5px var(--glow))}
+.player .dock-btn.dock-label{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:2px!important}
+.player .dock-btn.dock-label span{font-size:10px!important;font-weight:850!important;letter-spacing:.25px!important;color:#f2b2b7!important}
+.player .dock-skip{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:0!important}
+.player .dock-skip .skip-icon{font-size:22px!important;line-height:17px!important;font-weight:700!important;color:var(--accent2)!important;text-shadow:0 0 8px var(--glow)!important}
+.player .dock-skip small{font-size:7px!important;line-height:8px!important;color:#b8bac2!important;font-weight:800!important}
+.player .timeline{height:35px!important;padding:0 10px!important}
+.player .timeline input{height:5px!important;background:linear-gradient(90deg,var(--accent2) var(--progress,0%),#292c33 var(--progress,0%))!important;box-shadow:0 0 8px var(--glow)!important}
+.player .timeline input::-webkit-slider-thumb{width:13px!important;height:13px!important;border:2px solid #fff!important;box-shadow:0 0 0 3px var(--glow),0 0 12px var(--accent2)!important}
+.player .center-play-only{width:76px!important;height:76px!important;background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.18),rgba(255,48,66,.16) 38%,rgba(0,0,0,.72) 72%)!important;border:1px solid rgba(255,130,138,.85)!important;box-shadow:0 0 0 7px rgba(255,48,66,.07),0 0 28px var(--glow),inset 0 0 20px rgba(255,48,66,.18)!important}
+.player .center-play-only .svg-ico{width:29px!important;height:29px!important;color:#fff!important;filter:drop-shadow(0 0 7px var(--accent2))}
+.player .player-actions button{background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(0,0,0,.35))!important;border:1px solid rgba(255,255,255,.11)!important;transition:.18s ease!important}
+.player .player-actions button:hover{transform:translateY(-1px);border-color:var(--accent2)!important;box-shadow:0 0 12px var(--glow)!important}
+@media(max-width:370px){.player .dock-bar{gap:4px!important;padding:6px!important}.player .dock-btn{height:43px!important;border-radius:12px!important}.player .dock-btn .svg-ico,.player .dock-btn svg{width:19px!important;height:19px!important}}
